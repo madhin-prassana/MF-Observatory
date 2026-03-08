@@ -1,0 +1,104 @@
+======================================================================
+PROPHET VS LSTM COMPARISON REPORT
+======================================================================
+
+Total Funds Analyzed: 60
+
+MODEL ACCURACY COMPARISON
+----------------------------------------------------------------------
+Prophet Average MAPE: 3.92%
+LSTM Average MAPE:    2.25%
+
+✓ LSTM is 42.8% more accurate
+
+MODEL FIT COMPARISON
+----------------------------------------------------------------------
+Prophet Average R²: 0.941
+LSTM Average R²:    0.879
+
+WIN RATE
+----------------------------------------------------------------------
+Prophet wins: 13 funds (21.7%)
+LSTM wins:    41 funds (68.3%)
+
+PREDICTED RETURNS
+----------------------------------------------------------------------
+Prophet Average:         1.52%
+LSTM Average:            -2.40%
+Ensemble Simple:         -0.44%
+Ensemble Weighted:       -3.21%
+Best Model Selection:    -5.74%
+
+======================================================================
+TOP 10 RECOMMENDED FUNDS (Best Model Selection)
+======================================================================
+
+TATA Equity Savings Fund- Regular Plan -Monthly Payout of ID
+  Recommended Model: LSTM
+  Predicted Return:  86.18%
+  Model MAPE:        0.92%
+  Prophet: 3.94% | LSTM: 86.18%
+
+Fidelity Equity Fund-Dividend Option
+  Recommended Model: LSTM
+  Predicted Return:  72.12%
+  Model MAPE:        1.72%
+  Prophet: -11.84% | LSTM: 72.12%
+
+ING Income Growth Multi-Manager FoF Scheme Option A -15% Equ
+  Recommended Model: LSTM
+  Predicted Return:  67.55%
+  Model MAPE:        0.93%
+  Prophet: -1.56% | LSTM: 67.55%
+
+Principal Resurgent India Equity Fund-Dividend
+  Recommended Model: LSTM
+  Predicted Return:  67.26%
+  Model MAPE:        3.01%
+  Prophet: 6.27% | LSTM: 67.26%
+
+Sundaram Equity Hybrid Fund Regular Plan - Growth
+  Recommended Model: LSTM
+  Predicted Return:  29.94%
+  Model MAPE:        1.72%
+  Prophet: -3.61% | LSTM: 29.94%
+
+ING Income Growth Multi-Manager FoF Scheme-15% Equity Plan O
+  Recommended Model: LSTM
+  Predicted Return:  24.79%
+  Model MAPE:        0.61%
+  Prophet: -1.63% | LSTM: 24.79%
+
+Standard Chartered Classic Equity Fund-Plan-Growth
+  Recommended Model: Prophet
+  Predicted Return:  21.27%
+  Model MAPE:        2.72%
+  Prophet: 21.27% | LSTM: 62.24%
+
+SBI EQUITY HYBRID FUND - REGULAR PLAN -Growth
+  Recommended Model: LSTM
+  Predicted Return:  20.71%
+  Model MAPE:        2.32%
+  Prophet: 5.73% | LSTM: 20.71%
+
+Standard Chartered Premier Equity Fund-Plan-Growth
+  Recommended Model: Prophet
+  Predicted Return:  19.89%
+  Model MAPE:        2.81%
+  Prophet: 19.89% | LSTM: -1.16%
+
+UTI Children's Equity Fund - Regular Plan - Growth Option
+  Recommended Model: LSTM
+  Predicted Return:  18.46%
+  Model MAPE:        1.36%
+  Prophet: 9.55% | LSTM: 18.46%
+
+======================================================================
+RECOMMENDATION
+======================================================================
+
+✓ LSTM performs better overall (wins more funds)
+  Recommended: Use LSTM as default, Prophet for specific cases
+
+For Web Interface: Recommend using 'Best Model Selection' method
+This automatically picks the more accurate model for each fund.

@@ -1,0 +1,110 @@
+======================================================================
+PREDICTION SUMMARY STATISTICS
+======================================================================
+
+Total Funds                   : 60.00
+Average Expected Return       : 1.52
+Median Expected Return        : 4.55
+Best Predicted Return         : 22.48
+Worst Predicted Return        : -138.36
+Average MAPE                  : inf
+Average R² Score              : 0.94
+
+======================================================================
+TOP 10 PREDICTED PERFORMERS (6-Month Expected Return)
+======================================================================
+
+DWS Alpha Equity Fund - Growth
+  Expected Return: 22.48% (Range: 14.30% to 30.13%)
+  Current NAV: 115.76 → Predicted: 141.79
+  Model Accuracy (MAPE): 5.26%
+
+Standard Chartered Classic Equity Fund-Plan-Growth
+  Expected Return: 21.27% (Range: 4.19% to 39.77%)
+  Current NAV: 19.03 → Predicted: 23.08
+  Model Accuracy (MAPE): 2.72%
+
+Standard Chartered Premier Equity Fund-Plan-Growth
+  Expected Return: 19.89% (Range: -2.09% to 41.84%)
+  Current NAV: 20.84 → Predicted: 24.98
+  Model Accuracy (MAPE): 2.81%
+
+HSBC Small Cap Equity Fund - Growth
+  Expected Return: 18.95% (Range: 11.01% to 27.16%)
+  Current NAV: 82.25 → Predicted: 97.84
+  Model Accuracy (MAPE): 9.53%
+
+HSBC Small Cap Equity Fund - IDCW
+  Expected Return: 18.55% (Range: 8.60% to 28.30%)
+  Current NAV: 30.14 → Predicted: 35.73
+  Model Accuracy (MAPE): 9.89%
+
+Standard Chartered Imperial Equity Fund-Plan-Dividend
+  Expected Return: 18.20% (Range: 10.40% to 26.52%)
+  Current NAV: 13.61 → Predicted: 16.08
+  Model Accuracy (MAPE): 2.89%
+
+Standard Chartered Premier Equity Fund-Plan-Dividend
+  Expected Return: 17.77% (Range: -4.67% to 37.48%)
+  Current NAV: 20.84 → Predicted: 24.54
+  Model Accuracy (MAPE): 2.84%
+
+Standard Chartered Imperial Equity Fund-Plan-Growth
+  Expected Return: 17.50% (Range: 10.43% to 24.43%)
+  Current NAV: 15.01 → Predicted: 17.64
+  Model Accuracy (MAPE): 2.82%
+
+DWS Alpha Equity Fund - Dividend
+  Expected Return: 15.67% (Range: 3.12% to 27.12%)
+  Current NAV: 17.46 → Predicted: 20.20
+  Model Accuracy (MAPE): 5.93%
+
+DWS Equity Income Fund - Growth Option
+  Expected Return: 10.24% (Range: 8.15% to 12.34%)
+  Current NAV: 25.15 → Predicted: 27.72
+  Model Accuracy (MAPE): 1.05%
+
+======================================================================
+BOTTOM 10 PREDICTED PERFORMERS
+======================================================================
+
+ABN AMRO  Equity Fund-Dividend Plan
+  Expected Return: -138.36% (Range: -161.55% to -108.86%)
+  Model Accuracy (MAPE): 4.47%
+
+ABN AMRO  Equity Fund-Growth Plan
+  Expected Return: -49.19% (Range: -71.50% to -27.08%)
+  Model Accuracy (MAPE): 3.93%
+
+Fidelity Equity Fund-Dividend Option
+  Expected Return: -11.84% (Range: -22.71% to -1.10%)
+  Model Accuracy (MAPE): 4.46%
+
+Principal Hybrid Equity Fund- Monthly Income Distribution CU
+  Expected Return: -10.49% (Range: -18.21% to -3.77%)
+  Model Accuracy (MAPE): 5.19%
+
+ING Large Cap Equity Fund-Bonus Option
+  Expected Return: -9.31% (Range: -41.48% to 23.76%)
+  Model Accuracy (MAPE): 4.04%
+
+Sundaram Equity Hybrid Fund Regular Plan - Income Distributi
+  Expected Return: -8.28% (Range: -17.63% to 0.42%)
+  Model Accuracy (MAPE): inf%
+
+Fidelity Equity Fund-Growth Option
+  Expected Return: -5.30% (Range: -13.20% to 2.42%)
+  Model Accuracy (MAPE): 3.99%
+
+Principal Hybrid Equity Fund-Growth
+  Expected Return: -4.28% (Range: -9.37% to 1.47%)
+  Model Accuracy (MAPE): 5.51%
+
+Sundaram Equity Hybrid Fund Regular Plan - Growth
+  Expected Return: -3.61% (Range: -8.31% to 1.36%)
+  Model Accuracy (MAPE): inf%
+
+ING Large Cap Equity Fund-Growth Option
+  Expected Return: -2.22% (Range: -9.01% to 4.81%)
+  Model Accuracy (MAPE): 5.35%
+

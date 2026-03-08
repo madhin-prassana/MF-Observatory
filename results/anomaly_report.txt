@@ -1,0 +1,128 @@
+======================================================================
+MUTUAL FUND ANOMALY DETECTION REPORT
+======================================================================
+
+Total Funds Analyzed: 54
+Detection Method: Isolation Forest Algorithm
+Features Used: Returns, Volatility, Drawdown, Sharpe Ratio
+
+======================================================================
+ANOMALY BREAKDOWN
+======================================================================
+
+Normal              : 41 funds (75.9%)
+Performance Issue   :  5 funds (9.3%)
+Risk Issue          :  5 funds (9.3%)
+High Priority       :  3 funds (5.6%)
+
+======================================================================
+TOP 10 MOST ANOMALOUS FUNDS
+======================================================================
+
+
+ABN AMRO  Equity Fund-Dividend Plan
+  Category: High Priority
+  1Y Return: -48.13%
+  Volatility: 46.58%
+  Max Drawdown: -47.89%
+  Sharpe Ratio: 0.99
+  Performance Score: -0.714
+  Risk Score: -0.698
+
+JM Equity & Derivative Fund-Growth-growth option
+  Category: Risk Issue
+  1Y Return: 10.29%
+  Volatility: 1.36%
+  Max Drawdown: -17.90%
+  Sharpe Ratio: -9.46
+  Performance Score: -0.444
+  Risk Score: -0.760
+
+ING Large Cap Equity Fund-Bonus Option
+  Category: Performance Issue
+  1Y Return: -23.47%
+  Volatility: 34.29%
+  Max Drawdown: -56.12%
+  Sharpe Ratio: -0.25
+  Performance Score: -0.693
+  Risk Score: -0.477
+
+Principal Resurgent India Equity Fund-Dividend
+  Category: High Priority
+  1Y Return: 74.78%
+  Volatility: 38.38%
+  Max Drawdown: -57.96%
+  Sharpe Ratio: 0.34
+  Performance Score: -0.607
+  Risk Score: -0.561
+
+ABN AMRO  Equity Fund-Growth Plan
+  Category: Performance Issue
+  1Y Return: -29.97%
+  Volatility: 33.41%
+  Max Drawdown: -64.38%
+  Sharpe Ratio: 0.24
+  Performance Score: -0.631
+  Risk Score: -0.518
+
+Standard Chartered Classic Equity Fund-Plan-Dividend
+  Category: High Priority
+  1Y Return: -0.62%
+  Volatility: 31.32%
+  Max Drawdown: -46.02%
+  Sharpe Ratio: 0.06
+  Performance Score: -0.539
+  Risk Score: -0.527
+
+JM Equity & Derivative Fund-Dividend-dividend option
+  Category: Risk Issue
+  1Y Return: -2.06%
+  Volatility: 4.07%
+  Max Drawdown: -2.70%
+  Sharpe Ratio: -1.27
+  Performance Score: -0.454
+  Risk Score: -0.566
+
+ING Core Equity Fund-Dividend Option
+  Category: Performance Issue
+  1Y Return: 48.14%
+  Volatility: 30.07%
+  Max Drawdown: -62.83%
+  Sharpe Ratio: -0.14
+  Performance Score: -0.553
+  Risk Score: -0.449
+
+Principal Equity Savings Fund - Growth Option
+  Category: Risk Issue
+  1Y Return: 33.17%
+  Volatility: 5.15%
+  Max Drawdown: -72.62%
+  Sharpe Ratio: -2.65
+  Performance Score: -0.470
+  Risk Score: -0.528
+
+DWS Alpha Equity Fund - Dividend
+  Category: Performance Issue
+  1Y Return: -19.61%
+  Volatility: 25.52%
+  Max Drawdown: -59.13%
+  Sharpe Ratio: -0.12
+  Performance Score: -0.542
+  Risk Score: -0.430
+
+======================================================================
+HIGH PRIORITY ALERTS
+======================================================================
+
+These funds show unusual patterns in BOTH performance AND risk.
+Detailed investigation recommended before investing.
+
+⚠️  Standard Chartered Classic Equity Fund-Plan-Dividend
+   Return: -0.62% | Volatility: 31.32% | Drawdown: -46.02%
+
+⚠️  Principal Resurgent India Equity Fund-Dividend
+   Return: 74.78% | Volatility: 38.38% | Drawdown: -57.96%
+
+⚠️  ABN AMRO  Equity Fund-Dividend Plan
+   Return: -48.13% | Volatility: 46.58% | Drawdown: -47.89%
+
