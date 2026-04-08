@@ -35,7 +35,7 @@ def detect_performance_anomalies(df):
     features = ['return_1y', 'return_6m', 'return_3m', 'volatility']
     X = df[features].copy()
 
-    print(f"\n📊 Features used:")
+    print(f"\nFeatures used:")
     for i, feature in enumerate(features, 1):
         print(f"  {i}. {feature}")
 
@@ -76,7 +76,7 @@ def detect_risk_anomalies(df):
     features = ['volatility', 'max_drawdown', 'sharpe_ratio']
     X = df[features].copy()
 
-    print(f"\n📊 Features used:")
+    print(f"\nFeatures used:")
     for i, feature in enumerate(features, 1):
         print(f"  {i}. {feature}")
 
@@ -177,18 +177,18 @@ def analyze_anomalies(df):
         # Performance anomaly reasons
         if row['performance_anomaly'] == -1:
             if row['return_1y'] < df['return_1y'].quantile(0.25):
-                reasons.append("⚠️  Returns significantly below average")
+                reasons.append("Returns significantly below average")
             if row['return_3m'] < df['return_3m'].quantile(0.25):
-                reasons.append("⚠️  Recent performance declining")
+                reasons.append("Recent performance declining")
 
         # Risk anomaly reasons
         if row['risk_anomaly'] == -1:
             if row['volatility'] > df['volatility'].quantile(0.75):
-                reasons.append("⚠️  Unusually high volatility")
+                reasons.append("Unusually high volatility")
             if row['max_drawdown'] < df['max_drawdown'].quantile(0.25):
-                reasons.append("⚠️  Severe drawdown experienced")
+                reasons.append("Severe drawdown experienced")
             if row['sharpe_ratio'] < df['sharpe_ratio'].quantile(0.25):
-                reasons.append("⚠️  Poor risk-adjusted returns")
+                reasons.append("Poor risk-adjusted returns")
 
         if reasons:
             print(f"   Reasons:")
@@ -200,13 +200,13 @@ def analyze_anomalies(df):
 
     if len(high_priority) > 0:
         print(f"\n" + "=" * 70)
-        print(f"🔴 HIGH PRIORITY ALERTS ({len(high_priority)} funds)")
+        print(f"HIGH PRIORITY ALERTS ({len(high_priority)} funds)")
         print("=" * 70)
         print("\nThese funds show unusual patterns in BOTH performance AND risk.")
         print("Recommend detailed investigation before investing.\n")
 
         for idx, row in high_priority.iterrows():
-            print(f"⚠️  {row['scheme_name'][:65]}")
+            print(f"{row['scheme_name'][:65]}")
             print(
                 f"    Return: {row['return_1y']:.2f}% | Volatility: {row['volatility']:.2f}% | Drawdown: {row['max_drawdown']:.2f}%")
 
@@ -548,7 +548,7 @@ def main():
     print("\n" + "=" * 70)
     print("OUPUT:")
     print("=" * 70)
-    print("1. Open 'results/anomaly_detection_simple.png' - use in presentation")
+    print("1. Open 'results/anomaly_detection_simple.png' - simple analysis")
     print("2. Open 'results/anomaly_detection_detailed.png' - detailed analysis")
     print("3. Open 'results/anomaly_detection_results.csv' - see flagged funds")
     print("4. Read 'results/anomaly_report.txt' - text summary")
@@ -556,9 +556,6 @@ def main():
     if high_priority > 0:
         print(f"\nWARNING: {high_priority} HIGH PRIORITY anomalies detected!")
         print("   Review these funds carefully before any investment decisions.")
-
-    print("\n💡 Next step (optional): Run prediction.py for time series forecasting")
-    print("=" * 70 + "\n")
 
 
 if __name__ == "__main__":

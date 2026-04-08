@@ -86,7 +86,7 @@ def perform_clustering(df, n_clusters=5):
     features = ['volatility', 'max_drawdown', 'return_1y']
     X = df[features].copy()
 
-    print(f"\n📊 Features used for clustering:")
+    print(f"\nFeatures used for clustering:")
     for i, feature in enumerate(features, 1):
         print(f"  {i}. {feature}")
 
@@ -107,7 +107,7 @@ def perform_clustering(df, n_clusters=5):
     sil_score = silhouette_score(X_scaled, df['cluster'])
 
     print(f"✓ Clustering complete!")
-    print(f"\n📈 Silhouette Score: {sil_score:.3f}")
+    print(f"\nilhouette Score: {sil_score:.3f}")
     print(f"   (Range: -1 to 1, higher is better)")
     print(f"   (>0.5 = Good, >0.7 = Excellent)")
 
@@ -143,7 +143,7 @@ def assign_risk_labels(df):
     df['risk_category'] = df['cluster'].map(risk_mapping)
 
     print("\n✓ Risk categories assigned based on volatility")
-    print("\n📊 Cluster → Risk Category Mapping:")
+    print("\nCluster → Risk Category Mapping:")
     for cluster_num in sorted(df['cluster'].unique()):
         risk = df[df['cluster'] == cluster_num]['risk_category'].iloc[0]
         avg_vol = df[df['cluster'] == cluster_num]['volatility'].mean()
@@ -438,11 +438,11 @@ def main():
     print("\n" + "=" * 70)
     print("✓ CLUSTERING COMPLETE!")
     print("=" * 70)
-    print(f"\n📊 Summary:")
+    print(f"\nSummary:")
     print(f"   • Analyzed: {len(df)} mutual funds")
     print(f"   • Created: 5 risk-based clusters")
     print(f"   • Silhouette Score: {sil_score:.3f}")
-    print(f"\n📁 Output files created in 'results/' folder:")
+    print(f"\nOutput files created in 'results/' folder:")
     print(f"   • clustering_analysis.png (detailed charts)")
     print(f"   • clustering_simple.png (presentation chart)")
     print(f"   • clustered_funds.csv (full data with clusters)")
@@ -451,14 +451,10 @@ def main():
     print(f"   • elbow_method.png (optimal k analysis)")
 
     print("\n" + "=" * 70)
-    print("🎯 WHAT YOU CAN DO NOW:")
-    print("=" * 70)
-    print("1. Open 'results/clustering_simple.png' - use this in your presentation")
+    print("1. Open 'results/clustering_simple.png' - simple analysis")
     print("2. Open 'results/clustering_analysis.png' - detailed analysis")
     print("3. Open 'results/clustered_funds.csv' - see which fund is in which cluster")
     print("4. Read 'results/clustering_report.txt' - text summary")
-    print("\n💡 Next step: Run anomaly_detection.py")
-    print("=" * 70 + "\n")
 
 
 if __name__ == "__main__":

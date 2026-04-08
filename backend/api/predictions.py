@@ -43,6 +43,38 @@ def get_predictions(scheme_code: str):
     # Convert to int if digit string
     scheme_code_value = int(scheme_code) if scheme_code.isdigit() else scheme_code
 
+    # Check if fund is inactive (last data point older than 2 years from now)
+    # We can get the date from either prophet or lstm dataframes
+    prophet = prophet_df[prophet_df['scheme_code'] == scheme_code_value]
+    lstm = lstm_df[lstm_df['scheme_code'] == scheme_code_value]
+    
+    current_date_str = None
+    if not prophet.empty and 'current_date' in prophet.columns:
+        current_date_str = prophet.iloc[0]['current_date']
+    elif not lstm.empty and 'current_date' in lstm.columns:
+        current_date_str = lstm.iloc[0]['current_date']
+        
+    if pd.notna(current_date_str):
+        try:
+            current_date = pd.to_datetime(current_date_str)
+            cutoff_date = pd.Timestamp.now() - pd.DateOffset(years=2)
+            if current_date < cutoff_date:
+                raise HTTPException(status_code=400, detail="Fund is inactive; no reliable recent data for predictions")
+        except (ValueError, TypeError):
+            pass # fallback if parsing fails
+
+    import math
+    def safe_float(val):
+        if pd.isna(val):
+            return None
+        try:
+            f = float(val)
+            if math.isinf(f) or math.isnan(f):
+                return None
+            return f
+        except (ValueError, TypeError):
+            return None
+
     # Get Prophet prediction
     prophet = prophet_df[prophet_df['scheme_code'] == scheme_code_value]
     if prophet.empty:
@@ -50,12 +82,12 @@ def get_predictions(scheme_code: str):
     else:
         prophet_data = {
             "model": "Prophet",
-            "predicted_return_6m": float(prophet.iloc[0]['expected_return_6m']),
-            "predicted_nav_6m": float(prophet.iloc[0]['predicted_nav_6m']),
-            "confidence_lower": float(prophet.iloc[0]['expected_return_lower']),
-            "confidence_upper": float(prophet.iloc[0]['expected_return_upper']),
-            "mape": float(prophet.iloc[0]['mape']),
-            "r2_score": float(prophet.iloc[0]['r2_score'])
+            "predicted_return_6m": safe_float(prophet.iloc[0]['expected_return_6m']),
+            "predicted_nav_6m": safe_float(prophet.iloc[0]['predicted_nav_6m']),
+            "confidence_lower": safe_float(prophet.iloc[0]['expected_return_lower']),
+            "confidence_upper": safe_float(prophet.iloc[0]['expected_return_upper']),
+            "mape": safe_float(prophet.iloc[0]['mape']),
+            "r2_score": safe_float(prophet.iloc[0]['r2_score'])
         }
 
     # Get LSTM prediction
@@ -65,12 +97,12 @@ def get_predictions(scheme_code: str):
     else:
         lstm_data = {
             "model": "LSTM",
-            "predicted_return_6m": float(lstm.iloc[0]['expected_return_6m']),
-            "predicted_nav_6m": float(lstm.iloc[0]['predicted_nav_6m']),
-            "confidence_lower": float(lstm.iloc[0]['expected_return_lower']),
-            "confidence_upper": float(lstm.iloc[0]['expected_return_upper']),
-            "mape": float(lstm.iloc[0]['mape']),
-            "r2_score": float(lstm.iloc[0]['r2_score'])
+            "predicted_return_6m": safe_float(lstm.iloc[0]['expected_return_6m']),
+            "predicted_nav_6m": safe_float(lstm.iloc[0]['predicted_nav_6m']),
+            "confidence_lower": safe_float(lstm.iloc[0]['expected_return_lower']),
+            "confidence_upper": safe_float(lstm.iloc[0]['expected_return_upper']),
+            "mape": safe_float(lstm.iloc[0]['mape']),
+            "r2_score": safe_float(lstm.iloc[0]['r2_score'])
         }
 
     # Get Ensemble prediction
@@ -83,11 +115,11 @@ def get_predictions(scheme_code: str):
     ensemble_data = {
         "prophet": prophet_data,
         "lstm": lstm_data,
-        "ensemble_simple": float(ensemble_row['ensemble_simple']),
-        "ensemble_weighted": float(ensemble_row['ensemble_weighted']),
+        "ensemble_simple": safe_float(ensemble_row['ensemble_simple']),
+        "ensemble_weighted": safe_float(ensemble_row['ensemble_weighted']),
         "recommended_model": ensemble_row['recommended_model'],
-        "recommended_return": float(ensemble_row['recommended_return']),
-        "recommended_mape": float(ensemble_row['recommended_mape'])
+        "recommended_return": safe_float(ensemble_row['recommended_return']),
+        "recommended_mape": safe_float(ensemble_row['recommended_mape'])
     }
 
     return ensemble_data

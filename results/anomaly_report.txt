@@ -2,7 +2,7 @@
 MUTUAL FUND ANOMALY DETECTION REPORT
 ======================================================================
 
-Total Funds Analyzed: 54
+Total Funds Analyzed: 168
 Detection Method: Isolation Forest Algorithm
 Features Used: Returns, Volatility, Drawdown, Sharpe Ratio
 
@@ -10,105 +10,105 @@ Features Used: Returns, Volatility, Drawdown, Sharpe Ratio
 ANOMALY BREAKDOWN
 ======================================================================
 
-Normal              : 41 funds (75.9%)
-Performance Issue   :  5 funds (9.3%)
-Risk Issue          :  5 funds (9.3%)
-High Priority       :  3 funds (5.6%)
+Normal              : 128 funds (76.2%)
+Performance Issue   : 14 funds (8.3%)
+Risk Issue          : 14 funds (8.3%)
+High Priority       : 12 funds (7.1%)
 
 ======================================================================
 TOP 10 MOST ANOMALOUS FUNDS
 ======================================================================
 
 
-ABN AMRO  Equity Fund-Dividend Plan
+ICICI Prudential Equity Arbitrage Fund - Direct Plan - Growth
   Category: High Priority
-  1Y Return: -48.13%
-  Volatility: 46.58%
-  Max Drawdown: -47.89%
-  Sharpe Ratio: 0.99
-  Performance Score: -0.714
-  Risk Score: -0.698
+  1Y Return: 10.58%
+  Volatility: 1.02%
+  Max Drawdown: -59.31%
+  Sharpe Ratio: -12.42
+  Performance Score: -0.573
+  Risk Score: -0.790
 
-JM Equity & Derivative Fund-Growth-growth option
-  Category: Risk Issue
-  1Y Return: 10.29%
-  Volatility: 1.36%
-  Max Drawdown: -17.90%
-  Sharpe Ratio: -9.46
-  Performance Score: -0.444
-  Risk Score: -0.760
-
-ING Large Cap Equity Fund-Bonus Option
-  Category: Performance Issue
-  1Y Return: -23.47%
-  Volatility: 34.29%
-  Max Drawdown: -56.12%
-  Sharpe Ratio: -0.25
-  Performance Score: -0.693
-  Risk Score: -0.477
-
-Principal Resurgent India Equity Fund-Dividend
+Aditya Birla Sun Life International Equity Fund - Growth - Regular Plan
   Category: High Priority
-  1Y Return: 74.78%
-  Volatility: 38.38%
-  Max Drawdown: -57.96%
-  Sharpe Ratio: 0.34
-  Performance Score: -0.607
-  Risk Score: -0.561
+  1Y Return: 31.08%
+  Volatility: 58.32%
+  Max Drawdown: -90.64%
+  Sharpe Ratio: -0.08
+  Performance Score: -0.640
+  Risk Score: -0.699
 
-ABN AMRO  Equity Fund-Growth Plan
-  Category: Performance Issue
-  1Y Return: -29.97%
-  Volatility: 33.41%
-  Max Drawdown: -64.38%
-  Sharpe Ratio: 0.24
-  Performance Score: -0.631
-  Risk Score: -0.518
-
-Standard Chartered Classic Equity Fund-Plan-Dividend
+Aditya Birla Sun Life International Equity Fund - Regular - IDCW
   Category: High Priority
-  1Y Return: -0.62%
-  Volatility: 31.32%
-  Max Drawdown: -46.02%
-  Sharpe Ratio: 0.06
-  Performance Score: -0.539
-  Risk Score: -0.527
+  1Y Return: 23.28%
+  Volatility: 58.66%
+  Max Drawdown: -87.31%
+  Sharpe Ratio: 0.00
+  Performance Score: -0.635
+  Risk Score: -0.686
 
-JM Equity & Derivative Fund-Dividend-dividend option
+Aditya Birla Sun Life International Equity Fund - Direct - IDCW
+  Category: High Priority
+  1Y Return: 31.99%
+  Volatility: 67.70%
+  Max Drawdown: -83.19%
+  Sharpe Ratio: -0.06
+  Performance Score: -0.647
+  Risk Score: -0.673
+
+Aditya Birla Sun Life International Equity Fund - Growth - Direct Plan
+  Category: High Priority
+  1Y Return: 31.99%
+  Volatility: 67.70%
+  Max Drawdown: -83.18%
+  Sharpe Ratio: -0.06
+  Performance Score: -0.647
+  Risk Score: -0.673
+
+Nippon India Taiwan Equity Fund- Regular Plan- IDCW option
+  Category: High Priority
+  1Y Return: 140.82%
+  Volatility: 31.93%
+  Max Drawdown: -78.78%
+  Sharpe Ratio: -0.72
+  Performance Score: -0.752
+  Risk Score: -0.532
+
+Nippon India Taiwan Equity fund- Regular Plan- Growth Option
+  Category: High Priority
+  1Y Return: 140.82%
+  Volatility: 31.92%
+  Max Drawdown: -78.78%
+  Sharpe Ratio: -0.72
+  Performance Score: -0.747
+  Risk Score: -0.529
+
+Nippon India Taiwan Equity Fund- Direct Plan- Growth Option
+  Category: High Priority
+  1Y Return: 146.18%
+  Volatility: 31.91%
+  Max Drawdown: -79.77%
+  Sharpe Ratio: -0.76
+  Performance Score: -0.750
+  Risk Score: -0.520
+
+Nippon India Taiwan Equity Fund- Direct Plan- IDCW option
+  Category: High Priority
+  1Y Return: 146.18%
+  Volatility: 31.92%
+  Max Drawdown: -79.77%
+  Sharpe Ratio: -0.76
+  Performance Score: -0.748
+  Risk Score: -0.520
+
+ICICI Prudential Equity Arbitrage Fund - Direct Plan - IDCW
   Category: Risk Issue
-  1Y Return: -2.06%
-  Volatility: 4.07%
-  Max Drawdown: -2.70%
-  Sharpe Ratio: -1.27
-  Performance Score: -0.454
-  Risk Score: -0.566
-
-ING Core Equity Fund-Dividend Option
-  Category: Performance Issue
-  1Y Return: 48.14%
-  Volatility: 30.07%
-  Max Drawdown: -62.83%
-  Sharpe Ratio: -0.14
-  Performance Score: -0.553
-  Risk Score: -0.449
-
-Principal Equity Savings Fund - Growth Option
-  Category: Risk Issue
-  1Y Return: 33.17%
-  Volatility: 5.15%
-  Max Drawdown: -72.62%
-  Sharpe Ratio: -2.65
-  Performance Score: -0.470
-  Risk Score: -0.528
-
-DWS Alpha Equity Fund - Dividend
-  Category: Performance Issue
-  1Y Return: -19.61%
-  Volatility: 25.52%
-  Max Drawdown: -59.13%
-  Sharpe Ratio: -0.12
-  Performance Score: -0.542
-  Risk Score: -0.430
+  1Y Return: 5.27%
+  Volatility: 2.40%
+  Max Drawdown: -26.22%
+  Sharpe Ratio: -3.46
+  Performance Score: -0.486
+  Risk Score: -0.671
 
 ======================================================================
 HIGH PRIORITY ALERTS
@@ -117,12 +117,39 @@ HIGH PRIORITY ALERTS
 These funds show unusual patterns in BOTH performance AND risk.
 Detailed investigation recommended before investing.
 
-⚠️  Standard Chartered Classic Equity Fund-Plan-Dividend
-   Return: -0.62% | Volatility: 31.32% | Drawdown: -46.02%
+ICICI Prudential Equity Arbitrage Fund - Direct Plan - Growth
+   Return: 10.58% | Volatility: 1.02% | Drawdown: -59.31%
 
-⚠️  Principal Resurgent India Equity Fund-Dividend
-   Return: 74.78% | Volatility: 38.38% | Drawdown: -57.96%
+Edelweiss Equity Savings Fund - Regular Plan - Bonus Option
+   Return: 21.11% | Volatility: 4.93% | Drawdown: -53.49%
 
-⚠️  ABN AMRO  Equity Fund-Dividend Plan
-   Return: -48.13% | Volatility: 46.58% | Drawdown: -47.89%
+BANDHAN Equity Savings Fund-Direct Plan-Monthly IDCW
+   Return: -30.90% | Volatility: 13.23% | Drawdown: -33.41%
+
+Franklin India Focused Equity Fund - IDCW
+   Return: -19.50% | Volatility: 20.91% | Drawdown: -88.94%
+
+Nippon India Taiwan Equity Fund- Direct Plan- Growth Option
+   Return: 146.18% | Volatility: 31.91% | Drawdown: -79.77%
+
+Nippon India Taiwan Equity Fund- Direct Plan- IDCW option
+   Return: 146.18% | Volatility: 31.92% | Drawdown: -79.77%
+
+Nippon India Taiwan Equity fund- Regular Plan- Growth Option
+   Return: 140.82% | Volatility: 31.92% | Drawdown: -78.78%
+
+Nippon India Taiwan Equity Fund- Regular Plan- IDCW option
+   Return: 140.82% | Volatility: 31.93% | Drawdown: -78.78%
+
+Aditya Birla Sun Life International Equity Fund - Growth - Regular Plan
+   Return: 31.08% | Volatility: 58.32% | Drawdown: -90.64%
+
+Aditya Birla Sun Life International Equity Fund - Regular - IDCW
+   Return: 23.28% | Volatility: 58.66% | Drawdown: -87.31%
+
+Aditya Birla Sun Life International Equity Fund - Direct - IDCW
+   Return: 31.99% | Volatility: 67.70% | Drawdown: -83.19%
+
+Aditya Birla Sun Life International Equity Fund - Growth - Direct Plan
+   Return: 31.99% | Volatility: 67.70% | Drawdown: -83.18%
 

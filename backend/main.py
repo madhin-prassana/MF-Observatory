@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from backend.api import funds, predictions, clusters, anomalies
 
 app = FastAPI(
-    title="IntelliMF API",
+    title="Vantage . API",
     description="Intelligent Mutual Fund Analysis - ML-Powered REST API",
     version="1.0.0"
 )
@@ -11,7 +11,7 @@ app = FastAPI(
 # CORS configuration (allows React frontend to communicate)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # React dev server
+    allow_origins=["*"],  # Allow all origins for development
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -27,7 +27,7 @@ app.include_router(anomalies.router, prefix="/api/anomalies", tags=["Anomalies"]
 def root():
     """Root endpoint - API status"""
     return {
-        "message": "IntelliMF API is running",
+        "message": "Vantage . API is running",
         "version": "1.0.0",
         "docs": "/docs",
         "endpoints": {
@@ -41,4 +41,4 @@ def root():
 @app.get("/api/health")
 def health_check():
     """Health check endpoint"""
-    return {"status": "healthy", "service": "IntelliMF API"}
+    return {"status": "healthy", "service": "Vantage . API"}

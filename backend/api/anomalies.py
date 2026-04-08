@@ -18,6 +18,8 @@ ANOMALY_PATH = os.path.join(PROJECT_ROOT, "results", "anomaly_detection_results.
 # Load anomaly data
 try:
     anomaly_df = pd.read_csv(ANOMALY_PATH)
+    if 'performance_anomaly_score' in anomaly_df.columns:
+        anomaly_df['anomaly_score'] = anomaly_df['performance_anomaly_score']
     print(f"✓ Loaded anomaly data successfully")
 except Exception as e:
     print(f"✗ Error loading anomaly data: {e}")

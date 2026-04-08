@@ -146,12 +146,12 @@ const FundDetail = () => {
         <div>
           <h2 className="text-xl font-bold text-white mb-4">Key Metrics</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            <MetricCard label="Latest NAV" value={`₹${fund.latest_nav?.toFixed(2)}`} icon="💰" color="blue" />
-            <MetricCard label="Volatility" value={`${fund.volatility?.toFixed(2)}%`} icon="📊" color="orange" />
-            <MetricCard label="Sharpe Ratio" value={fund.sharpe_ratio?.toFixed(3)} icon="⚖️" color="purple" />
-            <MetricCard label="Max Drawdown" value={`${fund.max_drawdown?.toFixed(2)}%`} icon="📉" color="red" />
-            <MetricCard label="1Y Return" value={`${fund.return_1y?.toFixed(2)}%`} icon="📈" color="green" trend={fund.return_1y} />
-            <MetricCard label="Cluster" value={fund.cluster !== null ? `#${fund.cluster}` : 'N/A'} icon="🎯" color="cyan" />
+            <MetricCard label="Latest NAV" value={`₹${fund.latest_nav?.toFixed(2)}`}  color="blue" />
+            <MetricCard label="Volatility" value={`${fund.volatility?.toFixed(2)}%`}  color="orange" />
+            <MetricCard label="Sharpe Ratio" value={fund.sharpe_ratio?.toFixed(3)}  color="purple" />
+            <MetricCard label="Max Drawdown" value={`${fund.max_drawdown?.toFixed(2)}%`}  color="red" />
+            <MetricCard label="1Y Return" value={`${fund.return_1y?.toFixed(2)}%`}  color="green" trend={fund.return_1y} />
+            <MetricCard label="Cluster" value={fund.cluster !== null ? `#${fund.cluster}` : 'N/A'} color="cyan" />
           </div>
         </div>
 
@@ -210,7 +210,7 @@ const FundDetail = () => {
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div>
                   <div className="text-xs text-blue-400 font-semibold uppercase tracking-wider mb-1">
-                    🏆 Recommended Model
+                    Recommended Model
                   </div>
                   <div className="text-lg font-bold text-white">{predictions.recommended_model}</div>
                   <div className="text-sm text-gray-400 mt-1">
@@ -317,14 +317,12 @@ const FundDetail = () => {
                 label="Simple Ensemble"
                 value={`${predictions.ensemble_simple?.toFixed(2)}%`}
                 sub="Equal weight average"
-                icon="🔀"
                 color="cyan"
               />
               <MetricCard
                 label="Weighted Ensemble"
                 value={`${predictions.ensemble_weighted?.toFixed(2)}%`}
                 sub="Accuracy-weighted average"
-                icon="⚖️"
                 color="purple"
               />
             </div>

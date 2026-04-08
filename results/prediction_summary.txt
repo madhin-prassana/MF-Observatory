@@ -2,109 +2,109 @@
 PREDICTION SUMMARY STATISTICS
 ======================================================================
 
-Total Funds                   : 60.00
-Average Expected Return       : 1.52
-Median Expected Return        : 4.55
-Best Predicted Return         : 22.48
-Worst Predicted Return        : -138.36
+Total Funds                   : 172.00
+Average Expected Return       : inf
+Median Expected Return        : 9.18
+Best Predicted Return         : inf
+Worst Predicted Return        : -12.60
 Average MAPE                  : inf
-Average R² Score              : 0.94
+Average R² Score              : 0.98
 
 ======================================================================
 TOP 10 PREDICTED PERFORMERS (6-Month Expected Return)
 ======================================================================
 
-DWS Alpha Equity Fund - Growth
-  Expected Return: 22.48% (Range: 14.30% to 30.13%)
-  Current NAV: 115.76 → Predicted: 141.79
-  Model Accuracy (MAPE): 5.26%
+TATA Quant Equity Fund Regular Plan - Payout of Income Distr
+  Expected Return: inf% (Range: inf% to inf%)
+  Current NAV: 0.00 → Predicted: 15.80
+  Model Accuracy (MAPE): inf%
 
-Standard Chartered Classic Equity Fund-Plan-Growth
-  Expected Return: 21.27% (Range: 4.19% to 39.77%)
-  Current NAV: 19.03 → Predicted: 23.08
-  Model Accuracy (MAPE): 2.72%
+TATA Quant Equity Fund Direct Plan - Payout of Income Distri
+  Expected Return: inf% (Range: inf% to inf%)
+  Current NAV: 0.00 → Predicted: 17.28
+  Model Accuracy (MAPE): inf%
 
-Standard Chartered Premier Equity Fund-Plan-Growth
-  Expected Return: 19.89% (Range: -2.09% to 41.84%)
-  Current NAV: 20.84 → Predicted: 24.98
-  Model Accuracy (MAPE): 2.81%
+Invesco India PSU Equity Fund - Regular Plan - IDCW (Payout 
+  Expected Return: 40.38% (Range: 31.97% to 49.60%)
+  Current NAV: 38.47 → Predicted: 54.00
+  Model Accuracy (MAPE): 8.04%
 
-HSBC Small Cap Equity Fund - Growth
-  Expected Return: 18.95% (Range: 11.01% to 27.16%)
-  Current NAV: 82.25 → Predicted: 97.84
-  Model Accuracy (MAPE): 9.53%
+Invesco India PSU Equity Fund - Direct Plan - IDCW (Payout /
+  Expected Return: 30.87% (Range: 22.60% to 40.15%)
+  Current NAV: 47.63 → Predicted: 62.33
+  Model Accuracy (MAPE): 7.95%
 
-HSBC Small Cap Equity Fund - IDCW
-  Expected Return: 18.55% (Range: 8.60% to 28.30%)
-  Current NAV: 30.14 → Predicted: 35.73
-  Model Accuracy (MAPE): 9.89%
+Franklin India Focused Equity Fund - Growth Plan
+  Expected Return: 29.52% (Range: 24.83% to 34.06%)
+  Current NAV: 96.23 → Predicted: 124.64
+  Model Accuracy (MAPE): 6.76%
 
-Standard Chartered Imperial Equity Fund-Plan-Dividend
-  Expected Return: 18.20% (Range: 10.40% to 26.52%)
-  Current NAV: 13.61 → Predicted: 16.08
-  Model Accuracy (MAPE): 2.89%
+ICICI Prudential Focused Equity Fund - Growth
+  Expected Return: 28.17% (Range: 24.12% to 31.89%)
+  Current NAV: 85.98 → Predicted: 110.20
+  Model Accuracy (MAPE): 4.37%
 
-Standard Chartered Premier Equity Fund-Plan-Dividend
-  Expected Return: 17.77% (Range: -4.67% to 37.48%)
-  Current NAV: 20.84 → Predicted: 24.54
-  Model Accuracy (MAPE): 2.84%
+Invesco India PSU Equity Fund - Regular Plan - Growth
+  Expected Return: 27.36% (Range: 20.12% to 34.26%)
+  Current NAV: 62.79 → Predicted: 79.97
+  Model Accuracy (MAPE): 7.66%
 
-Standard Chartered Imperial Equity Fund-Plan-Growth
-  Expected Return: 17.50% (Range: 10.43% to 24.43%)
-  Current NAV: 15.01 → Predicted: 17.64
-  Model Accuracy (MAPE): 2.82%
+ICICI Prudential Focused Equity Fund - Direct Plan - Growth
+  Expected Return: 27.19% (Range: 23.39% to 31.47%)
+  Current NAV: 99.33 → Predicted: 126.34
+  Model Accuracy (MAPE): 3.95%
 
-DWS Alpha Equity Fund - Dividend
-  Expected Return: 15.67% (Range: 3.12% to 27.12%)
-  Current NAV: 17.46 → Predicted: 20.20
-  Model Accuracy (MAPE): 5.93%
+Franklin India Focused Equity Fund - Direct - Growth
+  Expected Return: 26.58% (Range: 21.49% to 31.74%)
+  Current NAV: 109.01 → Predicted: 137.99
+  Model Accuracy (MAPE): 4.70%
 
-DWS Equity Income Fund - Growth Option
-  Expected Return: 10.24% (Range: 8.15% to 12.34%)
-  Current NAV: 25.15 → Predicted: 27.72
-  Model Accuracy (MAPE): 1.05%
+Franklin India Focused Equity Fund - IDCW
+  Expected Return: 25.82% (Range: 18.42% to 33.49%)
+  Current NAV: 31.96 → Predicted: 40.22
+  Model Accuracy (MAPE): 6.28%
 
 ======================================================================
 BOTTOM 10 PREDICTED PERFORMERS
 ======================================================================
 
-ABN AMRO  Equity Fund-Dividend Plan
-  Expected Return: -138.36% (Range: -161.55% to -108.86%)
-  Model Accuracy (MAPE): 4.47%
+BANDHAN Equity Savings Fund-Direct Plan-Monthly IDCW
+  Expected Return: -12.60% (Range: -19.79% to -5.48%)
+  Model Accuracy (MAPE): 2.61%
 
-ABN AMRO  Equity Fund-Growth Plan
-  Expected Return: -49.19% (Range: -71.50% to -27.08%)
-  Model Accuracy (MAPE): 3.93%
+Aditya Birla Sun Life International Equity Fund - Regular - 
+  Expected Return: -3.82% (Range: -9.89% to 1.78%)
+  Model Accuracy (MAPE): 3.60%
 
-Fidelity Equity Fund-Dividend Option
-  Expected Return: -11.84% (Range: -22.71% to -1.10%)
-  Model Accuracy (MAPE): 4.46%
+Franklin Asian Equity Fund - IDCW
+  Expected Return: -2.65% (Range: -9.13% to 4.18%)
+  Model Accuracy (MAPE): 4.70%
 
-Principal Hybrid Equity Fund- Monthly Income Distribution CU
-  Expected Return: -10.49% (Range: -18.21% to -3.77%)
-  Model Accuracy (MAPE): 5.19%
+Franklin Asian Equity Fund - Growth Plan
+  Expected Return: -1.91% (Range: -7.35% to 2.78%)
+  Model Accuracy (MAPE): 4.49%
 
-ING Large Cap Equity Fund-Bonus Option
-  Expected Return: -9.31% (Range: -41.48% to 23.76%)
-  Model Accuracy (MAPE): 4.04%
+Sundaram Aggressive Hybrid Fund (Formerly Known as Principal
+  Expected Return: -0.53% (Range: -12.16% to 11.28%)
+  Model Accuracy (MAPE): 1.09%
 
-Sundaram Equity Hybrid Fund Regular Plan - Income Distributi
-  Expected Return: -8.28% (Range: -17.63% to 0.42%)
+Sundaram Aggressive Hybrid Fund(Formerly Known as Principal 
+  Expected Return: 0.14% (Range: -11.39% to 11.05%)
+  Model Accuracy (MAPE): 1.07%
+
+Franklin India Equity Savings Fund - Direct - IDCW
+  Expected Return: 0.29% (Range: -4.42% to 5.72%)
+  Model Accuracy (MAPE): 0.85%
+
+Franklin India Equity Savings Fund - IDCW
+  Expected Return: 0.49% (Range: -4.52% to 5.60%)
+  Model Accuracy (MAPE): 0.84%
+
+Aditya Birla Sun Life International Equity Fund - Growth - R
+  Expected Return: 0.95% (Range: -3.11% to 4.78%)
+  Model Accuracy (MAPE): 3.77%
+
+ICICI Prudential Equity Arbitrage Fund - IDCW
+  Expected Return: 1.33% (Range: -0.19% to 2.84%)
   Model Accuracy (MAPE): inf%
-
-Fidelity Equity Fund-Growth Option
-  Expected Return: -5.30% (Range: -13.20% to 2.42%)
-  Model Accuracy (MAPE): 3.99%
-
-Principal Hybrid Equity Fund-Growth
-  Expected Return: -4.28% (Range: -9.37% to 1.47%)
-  Model Accuracy (MAPE): 5.51%
-
-Sundaram Equity Hybrid Fund Regular Plan - Growth
-  Expected Return: -3.61% (Range: -8.31% to 1.36%)
-  Model Accuracy (MAPE): inf%
-
-ING Large Cap Equity Fund-Growth Option
-  Expected Return: -2.22% (Range: -9.01% to 4.81%)
-  Model Accuracy (MAPE): 5.35%
 

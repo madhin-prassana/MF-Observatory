@@ -64,7 +64,7 @@ const FundExplorer = () => {
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-2">Fund Explorer</h1>
           <p className="text-gray-400">
-            Browse and filter mutual funds with ML-powered insights
+            Detailed view of all funds with current NAV and predicted returns.
           </p>
         </div>
 

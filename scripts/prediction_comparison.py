@@ -106,11 +106,29 @@ def calculate_ensemble_predictions(merged_df):
 
     print("✓ Method 2: Weighted Average (based on accuracy)")
 
-    # Method 3: Best Model Selection (pick model with lower MAPE for each fund)
-    merged_df['best_model'] = merged_df.apply(
-        lambda row: 'Prophet' if row['mape_prophet_clean'] < row['mape_lstm_clean'] else 'LSTM',
-        axis=1
-    )
+    # Method 3: Best Model Selection (pick lowest MAPE, but penalize crazy hallucinations)
+    def select_best_model(row):
+        prophet_ret = row['expected_return_6m_prophet']
+        lstm_ret = row['expected_return_6m_lstm']
+        prophet_mape = row['mape_prophet_clean']
+        lstm_mape = row['mape_lstm_clean']
+        
+        # Define what constitutes an "absurd/extreme" 6-month return for a mutual fund
+        EXTREME_THRESHOLD = 35.0 
+        
+        prophet_absurd = abs(prophet_ret) > EXTREME_THRESHOLD
+        lstm_absurd = abs(lstm_ret) > EXTREME_THRESHOLD
+        
+        # If one hallucinates and the other is conservative, pick the conservative one
+        if lstm_absurd and not prophet_absurd:
+            return 'Prophet'
+        elif prophet_absurd and not lstm_absurd:
+            return 'LSTM'
+            
+        # If both are safe (or both are crazy), default to the one with the better historical accuracy
+        return 'Prophet' if prophet_mape < lstm_mape else 'LSTM'
+
+    merged_df['best_model'] = merged_df.apply(select_best_model, axis=1)
 
     merged_df['best_model_return'] = merged_df.apply(
         lambda row: row['expected_return_6m_prophet'] if row['best_model'] == 'Prophet'
@@ -149,7 +167,7 @@ def compare_model_performance(merged_df):
     prophet_r2_mean = merged_df['r2_score_prophet'].mean()
     lstm_r2_mean = merged_df['r2_score_lstm'].mean()
 
-    print(f"\n📊 Average Accuracy (Lower MAPE is better):")
+    print(f"\nAverage Accuracy (Lower MAPE is better):")
     print(f"   Prophet MAPE: {prophet_mape_mean:.2f}%")
     print(f"   LSTM MAPE:    {lstm_mape_mean:.2f}%")
 
@@ -160,7 +178,7 @@ def compare_model_performance(merged_df):
         improvement = ((prophet_mape_mean - lstm_mape_mean) / prophet_mape_mean) * 100
         print(f"   ✓ LSTM is {improvement:.1f}% more accurate (lower error)")
 
-    print(f"\n📊 Average Model Fit (Higher R² is better):")
+    print(f"\nAverage Model Fit (Higher R² is better):")
     print(f"   Prophet R²: {prophet_r2_mean:.3f}")
     print(f"   LSTM R²:    {lstm_r2_mean:.3f}")
 
@@ -169,7 +187,7 @@ def compare_model_performance(merged_df):
     lstm_wins = (merged_df['mape_lstm_clean'] < merged_df['mape_prophet_clean']).sum()
     ties = len(merged_df) - prophet_wins - lstm_wins
 
-    print(f"\n🏆 Win Rate (Lower MAPE):")
+    print(f"\nWin Rate (Lower MAPE):")
     print(f"   Prophet wins: {prophet_wins} funds ({prophet_wins / len(merged_df) * 100:.1f}%)")
     print(f"   LSTM wins:    {lstm_wins} funds ({lstm_wins / len(merged_df) * 100:.1f}%)")
     print(f"   Ties:         {ties} funds ({ties / len(merged_df) * 100:.1f}%)")
@@ -178,7 +196,7 @@ def compare_model_performance(merged_df):
     prophet_return_mean = merged_df['expected_return_6m_prophet'].mean()
     lstm_return_mean = merged_df['expected_return_6m_lstm'].mean()
 
-    print(f"\n📈 Average Predicted Returns:")
+    print(f"\nAverage Predicted Returns:")
     print(f"   Prophet: {prophet_return_mean:.2f}%")
     print(f"   LSTM:    {lstm_return_mean:.2f}%")
 
@@ -204,14 +222,14 @@ def analyze_ensemble_performance(merged_df):
     # Calculate average MAPE for best model selection
     best_model_mape = merged_df['best_model_mape'].mean()
 
-    print(f"\n📊 Ensemble Method Performance:")
+    print(f"\nEnsemble Method Performance:")
     print(f"   Simple Average Return:    {merged_df['ensemble_simple_return'].mean():.2f}%")
     print(f"   Weighted Average Return:  {merged_df['ensemble_weighted_return'].mean():.2f}%")
     print(f"   Best Model Selection:     {merged_df['best_model_return'].mean():.2f}%")
     print(f"   Best Model Avg MAPE:      {best_model_mape:.2f}%")
 
     # Best model distribution
-    print(f"\n🎯 Best Model Distribution:")
+    print(f"\nBest Model Distribution:")
     best_counts = merged_df['best_model'].value_counts()
     for model, count in best_counts.items():
         print(f"   {model}: {count} funds ({count / len(merged_df) * 100:.1f}%)")
@@ -566,34 +584,18 @@ def main():
     print("✓ COMPARISON & ENSEMBLE COMPLETE!")
     print("=" * 70)
 
-    print(f"\n📊 Key Findings:")
+    print(f"\nKey Findings:")
     print(f"   • Funds analyzed: {len(merged_df)}")
     print(f"   • Prophet accuracy: {stats['prophet_mape']:.2f}% MAPE")
     print(f"   • LSTM accuracy: {stats['lstm_mape']:.2f}% MAPE")
     print(f"   • Prophet wins: {stats['prophet_wins']} funds")
     print(f"   • LSTM wins: {stats['lstm_wins']} funds")
 
-    print(f"\n📁 Output files created:")
+    print(f"\nOutput files created:")
     print(f"   • prediction_ensemble.csv (recommended predictions)")
     print(f"   • prediction_comparison_report.txt (detailed report)")
     print(f"   • prediction_comparison_detailed.png (8 charts)")
     print(f"   • prediction_comparison_simple.png (presentation version)")
-
-    print("\n" + "=" * 70)
-    print("🎉 ALL PREDICTION WORK COMPLETE!")
-    print("=" * 70)
-    print("\nYou now have:")
-    print("  ✓ Prophet predictions")
-    print("  ✓ LSTM predictions")
-    print("  ✓ Ensemble predictions (3 methods)")
-    print("  ✓ Detailed comparison analysis")
-    print("  ✓ Recommendation for best approach")
-
-    print("\n💡 For Web Interface:")
-    print("   Use 'Best Model Selection' as default recommendation")
-    print("   This automatically picks the better model for each fund")
-    print("=" * 70 + "\n")
-
 
 if __name__ == "__main__":
     main()

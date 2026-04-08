@@ -6,21 +6,21 @@ const FundCard = ({ fund }) => {
 
   const getRiskStyle = (category) => {
     const styles = {
-      'Very Low Risk': { bg: 'bg-emerald-500/10', text: 'text-emerald-400', border: 'border-emerald-500/20' },
-      'Low Risk': { bg: 'bg-green-500/10', text: 'text-green-400', border: 'border-green-500/20' },
-      'Moderate Risk': { bg: 'bg-yellow-500/10', text: 'text-yellow-400', border: 'border-yellow-500/20' },
+      'Very Low Risk': { bg: 'bg-arctic-emerald/10', text: 'text-arctic-emerald', border: 'border-arctic-emerald/20' },
+      'Low Risk': { bg: 'bg-arctic-emerald/10', text: 'text-arctic-emerald', border: 'border-arctic-emerald/20' },
+      'Moderate Risk': { bg: 'bg-warning-amber/10', text: 'text-warning-amber', border: 'border-warning-amber/20' },
       'High Risk': { bg: 'bg-orange-500/10', text: 'text-orange-400', border: 'border-orange-500/20' },
-      'Very High Risk': { bg: 'bg-red-500/10', text: 'text-red-400', border: 'border-red-500/20' },
+      'Very High Risk': { bg: 'bg-critical-red/10', text: 'text-critical-red', border: 'border-critical-red/20' },
     };
-    return styles[category] || { bg: 'bg-gray-500/10', text: 'text-gray-400', border: 'border-gray-500/20' };
+    return styles[category] || { bg: 'bg-permafrost', text: 'text-white', border: 'border-white/10' };
   };
 
   const getAnomalyStyle = (category) => {
     const styles = {
-      'Normal': { color: 'text-emerald-400', icon: '✓' },
-      'Performance Issue': { color: 'text-yellow-400', icon: '⚠' },
+      'Normal': { color: 'text-arctic-emerald', icon: '✓' },
+      'Performance Issue': { color: 'text-warning-amber', icon: '⚠' },
       'Risk Issue': { color: 'text-orange-400', icon: '⚠' },
-      'High Priority': { color: 'text-red-400', icon: '🚨' },
+      'High Priority': { color: 'text-critical-red', icon: '🚨' },
     };
     return styles[category] || { color: 'text-gray-400', icon: '•' };
   };
@@ -52,13 +52,13 @@ const FundCard = ({ fund }) => {
       <div className="space-y-2.5 mb-4">
         <div className="flex justify-between items-center">
           <span className="text-sm text-gray-400">Predicted Return</span>
-          <span className={`text-sm font-bold ${fund.recommended_return >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+          <span className={`text-sm font-bold ${fund.recommended_return >= 0 ? 'text-arctic-emerald' : 'text-critical-red'}`}>
             {fund.recommended_return?.toFixed(2)}%
           </span>
         </div>
         <div className="flex justify-between items-center">
           <span className="text-sm text-gray-400">Model</span>
-          <span className="text-sm font-medium text-blue-400">{fund.recommended_model}</span>
+          <span className="text-sm font-bold text-glacial-blue tracking-wide uppercase">{fund.recommended_model}</span>
         </div>
         <div className="flex justify-between items-center">
           <span className="text-sm text-gray-400">Current NAV</span>
@@ -66,7 +66,7 @@ const FundCard = ({ fund }) => {
         </div>
         <div className="flex justify-between items-center">
           <span className="text-sm text-gray-400">Volatility</span>
-          <span className="text-sm font-medium text-orange-400">{fund.volatility?.toFixed(2)}%</span>
+          <span className="text-sm font-medium text-warning-amber">{fund.volatility?.toFixed(2)}%</span>
         </div>
       </div>
 

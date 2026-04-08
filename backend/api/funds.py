@@ -32,13 +32,17 @@ try:
     anomaly_df = pd.read_csv(ANOMALY_RESULTS_PATH)
     ensemble_df = pd.read_csv(ENSEMBLE_PREDICTIONS_PATH)
 
+    # Rename the column for the frontend
+    if 'performance_anomaly_score' in anomaly_df.columns:
+        anomaly_df['anomaly_score'] = anomaly_df['performance_anomaly_score']
+
     # Merge all data
     master_df = fund_metrics_df.merge(
         clustered_df[['scheme_code', 'cluster', 'risk_category']],
         on='scheme_code',
         how='left'
     ).merge(
-        anomaly_df[['scheme_code', 'anomaly_category']],
+        anomaly_df[['scheme_code', 'anomaly_category', 'anomaly_score']],
         on='scheme_code',
         how='left'
     ).merge(
@@ -210,14 +214,35 @@ def get_summary_stats():
     if master_df.empty:
         raise HTTPException(status_code=500, detail="Data not loaded")
 
+    # Calculate anomaly rate
+    flagged_count = len(master_df[master_df['anomaly_category'] != 'Normal'])
+    anomaly_rate = (flagged_count / len(master_df)) * 100 if len(master_df) > 0 else 0
+
+    # Get top 5 performers
+    top_5 = master_df.sort_values(by='recommended_return', ascending=False).head(5)
+    top_performers = []
+    for _, row in top_5.iterrows():
+        top_performers.append({
+            "scheme_code": int(row['scheme_code']),
+            "name": row['scheme_name'],
+            "return": float(row['recommended_return']),
+            "risk": row['risk_category']
+        })
+
+    # Get last sync date from file modification time
+    try:
+        mtime = os.path.getmtime(FUND_METRICS_PATH)
+        import datetime
+        last_sync = datetime.datetime.fromtimestamp(mtime).strftime('%d %B %Y')
+    except:
+        last_sync = "07 April 2026"
+
     return {
         "total_funds": len(master_df),
         "avg_predicted_return": float(master_df['recommended_return'].mean()),
-        "avg_volatility": float(master_df['volatility'].mean()),
+        "total_forecasts": len(master_df) * 180,
+        "anomaly_rate": float(anomaly_rate),
+        "last_sync": last_sync,
         "risk_distribution": master_df['risk_category'].value_counts().to_dict(),
-        "anomaly_distribution": master_df['anomaly_category'].value_counts().to_dict(),
-        "top_performer": {
-            "name": master_df.loc[master_df['recommended_return'].idxmax(), 'scheme_name'],
-            "return": float(master_df['recommended_return'].max())
-        }
+        "top_performers": top_performers
     }

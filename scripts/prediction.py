@@ -215,6 +215,13 @@ def process_all_funds():
             failed += 1
             continue
 
+        # Check if fund is inactive
+        cutoff_date = pd.Timestamp.now() - pd.DateOffset(years=2)
+        if prophet_df['ds'].max() < cutoff_date:
+            print(f"[{i}/{len(fund_files)}] ✗ Skipped {os.path.basename(fund_file)} (inactive fund, last date: {prophet_df['ds'].max().date()})")
+            failed += 1
+            continue
+
         print(f"[{i}/{len(fund_files)}] Processing: {scheme_name[:55]}...")
 
         # Train model
@@ -474,28 +481,18 @@ def main():
     print("✓ PREDICTION COMPLETE!")
     print("=" * 70)
 
-    print(f"\n📊 Summary:")
+    print(f"\nSummary:")
     print(f"   • Total funds processed: {successful + failed}")
     print(f"   • Successful predictions: {successful}")
     print(f"   • Failed: {failed}")
     print(f"   • Average predicted 6M return: {summary['Average Expected Return']:.2f}%")
     print(f"   • Average model accuracy (MAPE): {summary['Average MAPE']:.2f}%")
 
-    print(f"\n📁 Output files created:")
+    print(f"\nOutput files:")
     print(f"   • prediction_results.csv (detailed predictions)")
     print(f"   • prediction_summary.txt (text report)")
     print(f"   • prediction_summary_charts.png (overview charts)")
     print(f"   • predictions/ folder ({successful} individual fund charts)")
-
-    print("\n" + "=" * 70)
-    print("🎯 ALL THREE ML MODELS NOW COMPLETE!")
-    print("=" * 70)
-    print("✓ Clustering (Risk Categorization)")
-    print("✓ Anomaly Detection (Red Flag System)")
-    print("✓ Prediction (Performance Forecasting)")
-    print("\n🎉 Your project technical work is DONE!")
-    print("=" * 70 + "\n")
-
 
 if __name__ == "__main__":
     main()

@@ -2,7 +2,7 @@
 MUTUAL FUND CLUSTERING ANALYSIS REPORT
 ======================================================================
 
-Total Funds Analyzed: 54
+Total Funds Analyzed: 168
 Number of Clusters: 5
 Features Used: Volatility, 1-Year Return, Max Drawdown
 
@@ -11,82 +11,82 @@ CLUSTER BREAKDOWN
 ======================================================================
 
 
-Cluster 0: Very High Risk
+Cluster 0: Very Low Risk
 ----------------------------------------------------------------------
-Number of Funds: 4
-Average Volatility: 34.95%
-Average 1Y Return: -30.29%
-Average Max Drawdown: -56.88%
-Average Sharpe Ratio: 0.22
+Number of Funds: 51
+Average Volatility: 7.92%
+Average 1Y Return: -7.10%
+Average Max Drawdown: -35.75%
+Average Sharpe Ratio: -1.27
 
 Top 3 Performers in this cluster:
-  • DWS Alpha Equity Fund - Dividend
-    Return: -19.61%, Volatility: 25.52%
-  • ING Large Cap Equity Fund-Bonus Option
-    Return: -23.47%, Volatility: 34.29%
-  • ABN AMRO  Equity Fund-Growth Plan
-    Return: -29.97%, Volatility: 33.41%
+  • Edelweiss Equity Savings Fund - Regular Plan - IDCW Option
+    Return: 6.59%, Volatility: 5.41%
+  • ICICI Prudential Equity Arbitrage Fund - Direct Plan - IDCW
+    Return: 5.27%, Volatility: 2.40%
+  • Franklin India Equity Savings Fund- Growth
+    Return: 5.09%, Volatility: 6.05%
 
 Cluster 1: Moderate Risk
 ----------------------------------------------------------------------
-Number of Funds: 13
-Average Volatility: 24.30%
-Average 1Y Return: 11.95%
-Average Max Drawdown: -64.27%
-Average Sharpe Ratio: -0.38
+Number of Funds: 58
+Average Volatility: 16.75%
+Average 1Y Return: -4.74%
+Average Max Drawdown: -81.37%
+Average Sharpe Ratio: -0.95
 
 Top 3 Performers in this cluster:
-  • BARODA HYBRID EQUITY FUND - Plan A - IDCW Option
-    Return: 33.02%, Volatility: 21.08%
-  • HSBC Infrastructure Equity Fund - Growth
-    Return: 25.01%, Volatility: 23.30%
-  • HSBC Infrastructure Equity Fund - IDCW
-    Return: 25.01%, Volatility: 23.48%
+  • Franklin Asian Equity Fund - Growth Plan
+    Return: 21.23%, Volatility: 16.97%
+  • ICICI Prudential US Bluechip Equity Fund - Direct Plan -  Growth
+    Return: 13.32%, Volatility: 17.67%
+  • ICICI Prudential US Bluechip Equity Fund - Direct Plan -  IDCW
+    Return: 13.32%, Volatility: 17.67%
 
-Cluster 2: Very Low Risk
+Cluster 2: High Risk
 ----------------------------------------------------------------------
-Number of Funds: 13
-Average Volatility: 5.46%
-Average 1Y Return: 10.62%
-Average Max Drawdown: -28.52%
-Average Sharpe Ratio: -2.22
+Number of Funds: 4
+Average Volatility: 31.92%
+Average 1Y Return: 143.50%
+Average Max Drawdown: -79.27%
+Average Sharpe Ratio: -0.74
 
 Top 3 Performers in this cluster:
-  • ING Income Growth Multi-Manager FoF Scheme-30% Equity Plan Option A -Dividend
-    Return: 19.14%, Volatility: 6.79%
-  • DWS Equity Income Fund - Growth Option
-    Return: 19.03%, Volatility: 4.55%
-  • Principal Equity Savings Fund -Quaterly Income Distribution CUM Capital Withdrawal
-    Return: 18.73%, Volatility: 6.42%
+  • Nippon India Taiwan Equity Fund- Direct Plan- Growth Option
+    Return: 146.18%, Volatility: 31.91%
+  • Nippon India Taiwan Equity Fund- Direct Plan- IDCW option
+    Return: 146.18%, Volatility: 31.92%
+  • Nippon India Taiwan Equity fund- Regular Plan- Growth Option
+    Return: 140.82%, Volatility: 31.92%
 
-Cluster 3: Low Risk
+Cluster 3: Very High Risk
 ----------------------------------------------------------------------
-Number of Funds: 13
-Average Volatility: 14.52%
-Average 1Y Return: 7.50%
-Average Max Drawdown: -85.28%
-Average Sharpe Ratio: -1.15
+Number of Funds: 4
+Average Volatility: 63.09%
+Average 1Y Return: 29.59%
+Average Max Drawdown: -86.08%
+Average Sharpe Ratio: -0.05
 
 Top 3 Performers in this cluster:
-  • Principal Equity Savings Fund - Growth Option
-    Return: 33.17%, Volatility: 5.15%
-  • HSBC Small Cap Equity Fund - Growth
-    Return: 13.95%, Volatility: 22.25%
-  • ICICI Prudential Equity & Debt Fund - Growth
-    Return: 11.07%, Volatility: 14.58%
+  • Aditya Birla Sun Life International Equity Fund - Growth - Direct Plan
+    Return: 31.99%, Volatility: 67.70%
+  • Aditya Birla Sun Life International Equity Fund - Direct - IDCW
+    Return: 31.99%, Volatility: 67.70%
+  • Aditya Birla Sun Life International Equity Fund - Growth - Regular Plan
+    Return: 31.08%, Volatility: 58.32%
 
-Cluster 4: High Risk
+Cluster 4: Low Risk
 ----------------------------------------------------------------------
-Number of Funds: 11
-Average Volatility: 25.03%
-Average 1Y Return: 53.12%
-Average Max Drawdown: -70.24%
-Average Sharpe Ratio: -0.50
+Number of Funds: 51
+Average Volatility: 11.29%
+Average 1Y Return: 3.31%
+Average Max Drawdown: -62.99%
+Average Sharpe Ratio: -1.76
 
 Top 3 Performers in this cluster:
-  • Principal Resurgent India Equity Fund-Dividend
-    Return: 74.78%, Volatility: 38.38%
-  • Principal Resurgent India Equity Fund-Growth
-    Return: 74.74%, Volatility: 26.15%
-  • Standard Chartered Premier Equity Fund-Plan-Dividend
-    Return: 60.60%, Volatility: 27.88%
+  • NIPPON INDIA - JAPAN EQUITY FUND - DIRECT Plan - IDCW Option
+    Return: 28.53%, Volatility: 16.57%
+  • Nippon India Japan Equity Fund- Direct Plan- Growth Plan- Growth Option
+    Return: 28.53%, Volatility: 16.58%
+  • Nippon India Japan Equity Fund- Direct Plan- Growth Plan- Bonus Option
+    Return: 28.53%, Volatility: 16.58%

@@ -320,6 +320,13 @@ def process_all_funds():
             print(f"[{i}/{len(fund_files)}] ✗ Skipped {os.path.basename(fund_file)} (insufficient data)")
             failed += 1
             continue
+            
+        # Check if fund is inactive
+        cutoff_date = pd.Timestamp.now() - pd.DateOffset(years=2)
+        if df['date'].max() < cutoff_date:
+            print(f"[{i}/{len(fund_files)}] ✗ Skipped {os.path.basename(fund_file)} (inactive fund, last date: {df['date'].max().date()})")
+            failed += 1
+            continue
 
         print(f"[{i}/{len(fund_files)}] Processing: {scheme_name[:55]}...")
 
@@ -584,24 +591,18 @@ def main():
     print("✓ LSTM PREDICTION COMPLETE!")
     print("=" * 70)
 
-    print(f"\n📊 Summary:")
+    print(f"\nSummary:")
     print(f"   • Total funds processed: {successful + failed}")
     print(f"   • Successful LSTM predictions: {successful}")
     print(f"   • Failed: {failed}")
     print(f"   • Average predicted 6M return: {summary['Average Expected Return']:.2f}%")
     print(f"   • Average model accuracy (MAPE): {summary['Average MAPE']:.2f}%")
 
-    print(f"\n📁 Output files created:")
+    print(f"\nOutput files:")
     print(f"   • prediction_results_lstm.csv (detailed predictions)")
     print(f"   • prediction_summary_lstm.txt (text report)")
     print(f"   • prediction_summary_charts_lstm.png (overview charts)")
     print(f"   • predictions_lstm/ folder ({successful} individual fund charts)")
-
-    print("\n" + "=" * 70)
-    print("🎯 NEXT STEP: Run prediction_comparison.py")
-    print("=" * 70)
-    print("This will compare Prophet vs LSTM and create ensemble predictions!")
-    print("=" * 70 + "\n")
 
 
 if __name__ == "__main__":

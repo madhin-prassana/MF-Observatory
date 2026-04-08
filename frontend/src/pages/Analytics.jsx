@@ -8,13 +8,13 @@ import MetricCard from '../components/MetricCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const ANOMALY_COLORS = {
-  'Normal': '#10b981',
-  'Performance Issue': '#f59e0b',
+  'Normal': '#00E6A1',
+  'Performance Issue': '#FFB340',
   'Risk Issue': '#f97316',
-  'High Priority': '#ef4444',
+  'High Priority': '#FF5C5C',
 };
 
-const CLUSTER_COLORS = ['#10b981', '#22d3ee', '#f59e0b', '#f97316', '#ef4444'];
+const CLUSTER_COLORS = ['#00E6A1', '#4CD7F6', '#FFB340', '#f97316', '#FF5C5C'];
 
 const Analytics = () => {
   const [modelStats, setModelStats] = useState(null);
@@ -88,12 +88,12 @@ const Analytics = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0f1117]">
+    <div className="min-h-screen bg-deep-space">
       {/* Page Header */}
-      <div className="bg-gradient-to-br from-[#151829] to-[#0f1117] border-b border-white/5">
-        <div className="container mx-auto px-4 py-10">
-          <h1 className="text-4xl font-bold gradient-text mb-2">Analytics Dashboard</h1>
-          <p className="text-gray-400">ML model performance, risk clusters, and anomaly insights</p>
+      <div className="bg-arctic-sheet border-b border-permafrost">
+        <div className="container mx-auto px-4 py-8">
+          <h1 className="text-4xl font-extrabold text-white mb-2 tracking-tight">Detailed Analysis</h1>
+          <p className="text-glacial-blue/70 font-medium">A more detailed outlook on risk profiles of each fund and flagged anomalies</p>
         </div>
       </div>
 
@@ -149,8 +149,8 @@ const Analytics = () => {
                     <YAxis stroke="#6b7280" tick={{ fill: '#9ca3af', fontSize: 12 }} />
                     <Tooltip content={<CustomBarTooltip />} />
                     <Legend wrapperStyle={{ color: '#9ca3af', fontSize: 13 }} />
-                    <Bar dataKey="Prophet" fill="#3b82f6" radius={[6, 6, 0, 0]} />
-                    <Bar dataKey="LSTM" fill="#8b5cf6" radius={[6, 6, 0, 0]} />
+                    <Bar dataKey="Prophet" fill="#ADC6FF" radius={[2, 2, 0, 0]} />
+                    <Bar dataKey="LSTM" fill="#4CD7F6" radius={[2, 2, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -165,7 +165,7 @@ const Analytics = () => {
         {clusters && (
           <section>
             <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-              <span className="text-2xl">🎯</span> Risk Clusters (K-Means)
+              <span className="text-2xl"></span> Risk Clusters (K-Means)
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -222,7 +222,7 @@ const Analytics = () => {
         {anomalies && (
           <section>
             <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-              <span className="text-2xl">⚠️</span> Anomaly Detection
+              <span className="text-2xl"></span> Anomaly Detection
             </h2>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -280,13 +280,11 @@ const Analytics = () => {
                   <MetricCard
                     label="Total Funds"
                     value={anomalies.total_funds}
-                    icon="📋"
                     color="blue"
                   />
                   <MetricCard
                     label="Flagged Funds"
                     value={anomalies.flagged_count}
-                    icon="🚩"
                     color="red"
                   />
                 </div>
@@ -320,7 +318,7 @@ const Analytics = () => {
             {anomalies.flagged_funds && anomalies.flagged_funds.length > 0 && (
               <div className="glass-card p-6 mt-6 overflow-x-auto">
                 <h3 className="text-lg font-semibold text-white mb-4">
-                  🚩 Flagged Funds ({anomalies.flagged_count})
+                  Flagged Funds ({anomalies.flagged_count})
                 </h3>
                 <table className="w-full text-sm">
                   <thead>
@@ -369,10 +367,10 @@ const Analytics = () => {
       </div>
 
       {/* Footer */}
-      <div className="bg-[#0a0c14] border-t border-white/5 py-6 mt-8">
+      <div className="bg-[#0C1324] border-t border-permafrost py-6 mt-8">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-xs text-gray-500">
-            © 2025 IntelliMF — Intelligent Mutual Fund Analysis | Powered by Machine Learning
+          <p className="text-xs font-bold tracking-widest uppercase text-gray-500">
+            © 2025 Vantage . — Clinical Precision Analysis | Frozen Core Architecture
           </p>
         </div>
       </div>

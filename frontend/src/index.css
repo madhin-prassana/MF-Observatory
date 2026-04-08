@@ -2,17 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== IntelliMF Design System ===== */
+/* ===== Vantage . Design System ===== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #0f1117;
+  background-color: #0C1324;
   color: #e2e8f0;
 }
 
@@ -22,71 +22,77 @@ code {
 
 /* ===== Custom Utility Classes ===== */
 
-/* Glass morphism card */
+/* Precision Data Card */
 .glass-card {
-  background: rgba(30, 32, 44, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #151B2D;
+  border: 1px solid #23293C;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
 }
 
 .glass-card:hover {
-  background: rgba(30, 32, 44, 0.85);
-  border-color: rgba(255, 255, 255, 0.12);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  background: #191F31;
+  border-color: #4CD7F6;
+  box-shadow: 0 4px 20px rgba(76, 215, 246, 0.05);
 }
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+  background: linear-gradient(135deg, #ADC6FF, #4CD7F6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-text-green {
-  background: linear-gradient(135deg, #34d399, #22d3ee);
+  background: linear-gradient(135deg, #00E6A1, #4CD7F6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-text-warn {
-  background: linear-gradient(135deg, #fbbf24, #f97316);
+  background: linear-gradient(135deg, #FFB340, #FF5C5C);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Gradient badges */
+/* Base execution badges */
 .badge-low-risk {
-  background: linear-gradient(135deg, #059669, #10b981);
-  color: white;
+  background: rgba(0, 230, 161, 0.1);
+  color: #00E6A1;
+  border: 1px solid rgba(0, 230, 161, 0.3);
   padding: 4px 12px;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  border-radius: 2px;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .badge-moderate-risk {
-  background: linear-gradient(135deg, #d97706, #f59e0b);
-  color: white;
+  background: rgba(255, 179, 64, 0.1);
+  color: #FFB340;
+  border: 1px solid rgba(255, 179, 64, 0.3);
   padding: 4px 12px;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  border-radius: 2px;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .badge-high-risk {
-  background: linear-gradient(135deg, #dc2626, #ef4444);
-  color: white;
+  background: rgba(255, 92, 92, 0.1);
+  color: #FF5C5C;
+  border: 1px solid rgba(255, 92, 92, 0.3);
   padding: 4px 12px;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  border-radius: 2px;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 /* Animated gradient border */
@@ -139,18 +145,18 @@ code {
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1c2e;
+  background: #0C1324;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.3);
-  border-radius: 4px;
+  background: rgba(173, 198, 255, 0.2);
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.5);
+  background: rgba(173, 198, 255, 0.4);
 }

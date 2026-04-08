@@ -14,24 +14,24 @@ const Navbar = () => {
   ];
 
   const linkClasses = (path) =>
-    `px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+    `px-4 py-2 rounded-sm text-xs font-bold tracking-[0.05em] uppercase transition-all duration-200 border ${
       isActive(path)
-        ? 'bg-white/10 text-white shadow-lg shadow-blue-500/10'
-        : 'text-gray-300 hover:text-white hover:bg-white/5'
+        ? 'bg-arctic-sheet border-electric-cyan/30 text-electric-cyan shadow-[0_0_10px_rgba(76,215,246,0.1)]'
+        : 'border-transparent text-gray-400 hover:text-white hover:bg-white/5 hover:border-white/10'
     }`;
 
   return (
-    <nav className="bg-[#12141f]/80 backdrop-blur-xl border-b border-white/5 sticky top-0 z-50">
+    <nav className="bg-deep-space/95 backdrop-blur-xl border-b border-permafrost sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-purple-500/20 group-hover:shadow-purple-500/40 transition-shadow">
-              iM
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="w-8 h-8 bg-glacial-blue rounded-sm flex items-center justify-center text-deep-space font-extrabold text-sm shadow-[0_0_15px_rgba(173,198,255,0.3)] group-hover:shadow-[0_0_20px_rgba(173,198,255,0.6)] transition-shadow">
+              V.
             </div>
             <div className="text-xl font-bold">
-              <span className="text-white">Intelli</span>
-              <span className="gradient-text">MF</span>
+              <span className="text-white">Vantage</span>
+              <span className="gradient-text"> .</span>
             </div>
           </Link>
 
