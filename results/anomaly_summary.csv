@@ -1,5 +1,5 @@
 anomaly_category,Count,Avg_Volatility,Avg_Return,Avg_Drawdown,Avg_Sharpe,Avg_Perf_Score,Avg_Risk_Score
-High Priority,12,35.01,56.14,-74.71,-1.62,-0.65,-0.59
-Normal,128,12.19,-4.41,-61.17,-1.25,-0.41,-0.42
-Performance Issue,14,15.88,11.36,-62.84,-0.65,-0.55,-0.42
-Risk Issue,14,9.19,-3.16,-57.91,-1.78,-0.44,-0.53
+High Priority,13,40.36,16.76,-64.5,0.28,-0.64,-0.61
+Normal,131,11.48,-11.81,-28.54,0.2,-0.39,-0.42
+Performance Issue,13,18.84,-10.56,-38.08,0.47,-0.56,-0.44
+Risk Issue,13,9.25,-15.21,-20.9,0.24,-0.44,-0.55
