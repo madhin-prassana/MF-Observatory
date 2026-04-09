@@ -1,4 +1,4 @@
-# Vantage . - Intelligent Mutual Fund Analysis Platform
+# Vantage . - Mutual Fund Analysis Platform
 
 Vantage . is a full-stack machine learning platform designed to analyze mutual funds, perform risk-based clustering, detect performance anomalies, and predict future returns using a hybrid ensemble of LSTM and Prophet models.
 
