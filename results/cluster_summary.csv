@@ -1,6 +1,0 @@
-cluster,risk_category,Fund_Count,Avg_Volatility,Min_Volatility,Max_Volatility,Avg_Return,Min_Return,Max_Return,Avg_Drawdown,Min_Drawdown,Max_Drawdown,Avg_Sharpe
-0,Very Low Risk,51,7.92,2.4,13.89,-7.1,-30.9,6.59,-35.75,-50.29,-22.89,-1.27
-1,Moderate Risk,58,16.75,11.35,23.29,-4.74,-24.22,21.23,-81.37,-95.9,-61.26,-0.95
-2,High Risk,4,31.92,31.91,31.93,143.5,140.82,146.18,-79.27,-79.77,-78.78,-0.74
-3,Very High Risk,4,63.09,58.32,67.7,29.59,23.28,31.99,-86.08,-90.64,-83.18,-0.05
-4,Low Risk,51,11.29,1.02,19.27,3.31,-18.26,28.53,-62.99,-83.02,-46.58,-1.76
