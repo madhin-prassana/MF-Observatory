@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException, Query
 from typing import Optional, List
 import pandas as pd
+import numpy as np
 import os
 
 router = APIRouter()
@@ -25,38 +26,71 @@ print(f"  Exists: {os.path.exists(FUND_METRICS_PATH)}")
 print(f"  CLUSTERED_FUNDS_PATH: {CLUSTERED_FUNDS_PATH}")
 print(f"  Exists: {os.path.exists(CLUSTERED_FUNDS_PATH)}")
 
-# Load data once at startup
+# Load data once at startup with robustness
+master_df = pd.DataFrame()
+
 try:
+    print(f"Loading data files...")
+    
+    # 1. Load basic metrics
     fund_metrics_df = pd.read_csv(FUND_METRICS_PATH)
-    clustered_df = pd.read_csv(CLUSTERED_FUNDS_PATH)
-    anomaly_df = pd.read_csv(ANOMALY_RESULTS_PATH)
-    ensemble_df = pd.read_csv(ENSEMBLE_PREDICTIONS_PATH)
+    fund_metrics_df['scheme_code'] = fund_metrics_df['scheme_code'].astype(int)
+    print(f"  ✓ Loaded fund_metrics: {len(fund_metrics_df)} rows")
+    
+    # Initialize master with metrics
+    master_df = fund_metrics_df.copy()
 
-    # Rename the column for the frontend
-    if 'performance_anomaly_score' in anomaly_df.columns:
-        anomaly_df['anomaly_score'] = anomaly_df['performance_anomaly_score']
+    # 2. Add Clustering data safely
+    if os.path.exists(CLUSTERED_FUNDS_PATH):
+        clustered_df = pd.read_csv(CLUSTERED_FUNDS_PATH)
+        clustered_df['scheme_code'] = clustered_df['scheme_code'].astype(int)
+        cols_to_use = [c for c in ['scheme_code', 'cluster', 'risk_category'] if c in clustered_df.columns]
+        master_df = master_df.merge(clustered_df[cols_to_use], on='scheme_code', how='left')
+        print(f"  ✓ Merged clustered_funds")
 
-    # Merge all data
-    master_df = fund_metrics_df.merge(
-        clustered_df[['scheme_code', 'cluster', 'risk_category']],
-        on='scheme_code',
-        how='left'
-    ).merge(
-        anomaly_df[['scheme_code', 'anomaly_category', 'anomaly_score']],
-        on='scheme_code',
-        how='left'
-    ).merge(
-        ensemble_df[['scheme_code', 'prophet_return', 'lstm_return',
-                     'ensemble_simple', 'ensemble_weighted', 'recommended_model', 'recommended_return']],
-        on='scheme_code',
-        how='left'
-    )
+    # 3. Add Anomaly data safely
+    if os.path.exists(ANOMALY_RESULTS_PATH):
+        anomaly_df = pd.read_csv(ANOMALY_RESULTS_PATH)
+        anomaly_df['scheme_code'] = anomaly_df['scheme_code'].astype(int)
+        
+        # Mapping score if renamed
+        if 'performance_anomaly_score' in anomaly_df.columns and 'anomaly_score' not in anomaly_df.columns:
+            anomaly_df['anomaly_score'] = anomaly_df['performance_anomaly_score']
+            
+        cols_to_use = [c for c in ['scheme_code', 'anomaly_category', 'anomaly_score'] if c in anomaly_df.columns]
+        master_df = master_df.merge(anomaly_df[cols_to_use], on='scheme_code', how='left')
+        print(f"  ✓ Merged anomaly_results")
 
-    print(f"✓ Loaded {len(master_df)} funds successfully")
+    # 4. Add Ensemble Predictions safely
+    if os.path.exists(ENSEMBLE_PREDICTIONS_PATH):
+        ensemble_df = pd.read_csv(ENSEMBLE_PREDICTIONS_PATH)
+        ensemble_df['scheme_code'] = ensemble_df['scheme_code'].astype(int)
+        
+        # Columns used in the frontend
+        potential_cols = [
+            'scheme_code', 'prophet_return', 'lstm_return', 
+            'ensemble_simple', 'ensemble_weighted', 
+            'recommended_model', 'recommended_return'
+        ]
+        # Fallback for older naming if needed
+        if 'expected_return_6m' in ensemble_df.columns and 'recommended_return' not in ensemble_df.columns:
+             ensemble_df['recommended_return'] = ensemble_df['expected_return_6m']
+
+        cols_to_use = [c for c in potential_cols if c in ensemble_df.columns]
+        master_df = master_df.merge(ensemble_df[cols_to_use], on='scheme_code', how='left')
+        print(f"  ✓ Merged prediction_ensemble")
+
+    # 5. Data Quality Filters: Catch and remove invalid data
+    master_df = master_df.replace([np.inf, -np.inf], np.nan)
+    master_df = master_df.dropna(subset=['recommended_return'])
+    
+    print(f"✓ Master data initialization complete: {len(master_df)} funds loaded (after quality filters)")
 
 except Exception as e:
-    print(f"✗ Error loading data: {e}")
-    master_df = pd.DataFrame()
+    print(f"✗ CRITICAL Error loading data: {e}")
+    import traceback
+    traceback.print_exc()
+    # master_df remains empty or partially filled
 
 
 @router.get("/")
@@ -122,10 +156,10 @@ def get_all_funds(
     # Convert to dict
     funds = df.to_dict('records')
 
-    # Clean NaN values
+    # Clean NaN and Inf values
     for fund in funds:
         for key, value in fund.items():
-            if pd.isna(value):
+            if pd.isna(value) or (isinstance(value, float) and (value == float('inf') or value == float('-inf'))):
                 fund[key] = None
 
     return {
@@ -156,9 +190,9 @@ def get_fund_by_code(scheme_code: str):
 
     fund_dict = fund.iloc[0].to_dict()
 
-    # Clean NaN values
+    # Clean NaN and Inf values
     for key, value in fund_dict.items():
-        if pd.isna(value):
+        if pd.isna(value) or (isinstance(value, float) and (value == float('inf') or value == float('-inf'))):
             fund_dict[key] = None
 
     return fund_dict
@@ -198,10 +232,10 @@ def compare_funds(scheme_codes: List[str]):
 
     comparison = funds.to_dict('records')
 
-    # Clean NaN values
+    # Clean NaN and Inf values
     for fund in comparison:
         for key, value in fund.items():
-            if pd.isna(value):
+            if pd.isna(value) or (isinstance(value, float) and (value == float('inf') or value == float('-inf'))):
                 fund[key] = None
 
     return {"funds": comparison}
@@ -218,6 +252,16 @@ def get_summary_stats():
     flagged_count = len(master_df[master_df['anomaly_category'] != 'Normal'])
     anomaly_rate = (flagged_count / len(master_df)) * 100 if len(master_df) > 0 else 0
 
+    # Calculate avg predicted return safely (excluding infs)
+    pred_returns = master_df['recommended_return'].replace([np.inf, -np.inf], np.nan).dropna()
+    avg_pred_return = pred_returns.mean() if not pred_returns.empty else 0
+    
+    import math
+    def clean_val(val):
+        if pd.isna(val) or math.isinf(val):
+            return None
+        return float(val)
+
     # Get top 5 performers
     top_5 = master_df.sort_values(by='recommended_return', ascending=False).head(5)
     top_performers = []
@@ -225,7 +269,7 @@ def get_summary_stats():
         top_performers.append({
             "scheme_code": int(row['scheme_code']),
             "name": row['scheme_name'],
-            "return": float(row['recommended_return']),
+            "return": clean_val(row['recommended_return']),
             "risk": row['risk_category']
         })
 
@@ -239,10 +283,10 @@ def get_summary_stats():
 
     return {
         "total_funds": len(master_df),
-        "avg_predicted_return": float(master_df['recommended_return'].mean()),
+        "avg_predicted_return": clean_val(avg_pred_return),
         "total_forecasts": len(master_df) * 180,
-        "anomaly_rate": float(anomaly_rate),
+        "anomaly_rate": clean_val(anomaly_rate),
         "last_sync": last_sync,
-        "risk_distribution": master_df['risk_category'].value_counts().to_dict(),
+        "risk_distribution": {str(k): int(v) for k, v in master_df['risk_category'].value_counts().to_dict().items()},
         "top_performers": top_performers
     }
