@@ -140,7 +140,7 @@ def main():
     print(f"DOWNLOAD COMPLETE!")
     print(f"{'=' * 70}")
     print(f"✓ Successfully downloaded: {successful} new funds")
-    print(f"⚠ Skipped (insufficient data): {skipped} funds")
+    print(f"⚠ Skipped due to insufficient data: {skipped} funds")
     print(f"✗ Failed: {failed} funds")
     print(f"Total funds available: {len(existing_codes) + successful}")
     print(f"{'=' * 70}")
