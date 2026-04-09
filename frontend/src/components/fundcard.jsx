@@ -53,7 +53,7 @@ const FundCard = ({ fund }) => {
         <div className="flex justify-between items-center">
           <span className="text-sm text-gray-400">Predicted Return</span>
           <span className={`text-sm font-bold ${fund.recommended_return >= 0 ? 'text-arctic-emerald' : 'text-critical-red'}`}>
-            {fund.recommended_return?.toFixed(2)}%
+            {fund.recommended_return !== null && fund.recommended_return !== undefined ? `${fund.recommended_return.toFixed(2)}%` : 'N/A'}
           </span>
         </div>
         <div className="flex justify-between items-center">
@@ -62,11 +62,15 @@ const FundCard = ({ fund }) => {
         </div>
         <div className="flex justify-between items-center">
           <span className="text-sm text-gray-400">Current NAV</span>
-          <span className="text-sm font-medium text-white">₹{fund.latest_nav?.toFixed(2)}</span>
+          <span className="text-sm font-medium text-white">
+            {fund.latest_nav !== null && fund.latest_nav !== undefined ? `₹${fund.latest_nav.toFixed(2)}` : 'N/A'}
+          </span>
         </div>
         <div className="flex justify-between items-center">
           <span className="text-sm text-gray-400">Volatility</span>
-          <span className="text-sm font-medium text-warning-amber">{fund.volatility?.toFixed(2)}%</span>
+          <span className="text-sm font-medium text-warning-amber">
+            {fund.volatility !== null && fund.volatility !== undefined ? `${fund.volatility.toFixed(2)}%` : 'N/A'}
+          </span>
         </div>
       </div>
 

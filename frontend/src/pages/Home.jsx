@@ -36,8 +36,8 @@ const Home = () => {
               {stats ? `Last Pipeline Sync: ${stats.last_sync}` : 'Initializing Telemetry...'}
             </div>
             <h1 className="text-5xl lg:text-7xl font-extrabold text-white mb-6 tracking-tighter leading-tight drop-shadow-sm">
-              Predictive Mutual Fund
-              <span className="block text-electric-cyan">Intelligence Platform</span>
+              Mutual Fund Analysis Platform using
+              <span className="block text-electric-cyan">Machine Learning</span>
             </h1>
             <p className="text-lg text-glacial-blue/70 mb-10 max-w-2xl mx-auto leading-relaxed">
               A quantitative research environment leveraging machine learning to forecast NAV trajectories, categorize risk profiles, and detect performance anomalies across the Indian mutual fund landscape.
@@ -112,12 +112,14 @@ const Home = () => {
               </div>
               <div className="glass-card p-6 text-center border-permafrost">
                 <div className={`text-4xl font-extrabold mb-1 tracking-tight ${stats.avg_predicted_return >= 0 ? 'text-arctic-emerald' : 'text-critical-red'}`}>
-                  {stats.avg_predicted_return?.toFixed(1)}%
+                  {stats.avg_predicted_return !== null && stats.avg_predicted_return !== undefined ? `${stats.avg_predicted_return.toFixed(1)}%` : 'N/A'}
                 </div>
                 <div className="text-xs font-bold text-gray-500 uppercase tracking-widest">Avg Predicted Return</div>
               </div>
               <div className="glass-card p-6 text-center border-permafrost">
-                <div className="text-4xl font-extrabold text-warning-amber mb-1 tracking-tight">{stats.anomaly_rate?.toFixed(1)}%</div>
+                <div className="text-4xl font-extrabold text-warning-amber mb-1 tracking-tight">
+                  {stats.anomaly_rate !== null && stats.anomaly_rate !== undefined ? `${stats.anomaly_rate.toFixed(1)}%` : 'N/A'}
+                </div>
                 <div className="text-xs font-bold text-gray-500 uppercase tracking-widest">Anomaly Detection Rate</div>
               </div>
             </div>
@@ -139,7 +141,7 @@ const Home = () => {
                       key={category}
                       style={{ width: `${percent}%`, backgroundColor: colors[idx % colors.length] }}
                       className="h-full transition-all duration-500 hover:opacity-80 cursor-help"
-                      title={`${category}: ${count} funds (${percent.toFixed(1)}%)`}
+                      title={`${category}: ${count} funds (${percent !== null ? percent.toFixed(1) : 'N/A'}%)`}
                     />
                   );
                 })}
@@ -238,7 +240,7 @@ const Home = () => {
                       </td>
                       <td className="px-8 py-5 text-right">
                         <span className="text-lg font-black text-arctic-emerald">
-                          +{fund.return.toFixed(2)}%
+                          {fund.return !== null && fund.return !== undefined ? `+${fund.return.toFixed(2)}%` : 'N/A'}
                         </span>
                       </td>
                     </tr>

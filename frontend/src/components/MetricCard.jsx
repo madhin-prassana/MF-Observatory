@@ -20,7 +20,7 @@ const MetricCard = ({ label, value, sub, icon, color = 'cyan', trend }) => {
         {value}
       </div>
       {sub && <div className="text-xs text-glacial-blue/50 font-medium">{sub}</div>}
-      {trend !== undefined && (
+      {trend !== undefined && trend !== null && (
         <div className={`text-xs mt-2 font-bold ${trend >= 0 ? 'text-arctic-emerald' : 'text-critical-red'}`}>
           {trend >= 0 ? '↑' : '↓'} {Math.abs(trend).toFixed(2)}%
         </div>

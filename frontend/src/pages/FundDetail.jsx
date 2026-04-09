@@ -127,13 +127,15 @@ const FundDetail = () => {
             <div className="flex gap-6 items-center">
               <div className="text-center">
                 <div className="text-sm text-gray-400 mb-1">Current NAV</div>
-                <div className="text-2xl font-bold text-white">₹{fund.latest_nav?.toFixed(2)}</div>
+                <div className="text-2xl font-bold text-white">
+                  {fund.latest_nav !== null && fund.latest_nav !== undefined ? `₹${fund.latest_nav.toFixed(2)}` : 'N/A'}
+                </div>
               </div>
               <div className="w-px h-12 bg-white/10"></div>
               <div className="text-center">
                 <div className="text-sm text-gray-400 mb-1">Predicted Return</div>
                 <div className={`text-2xl font-bold ${fund.recommended_return >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                  {fund.recommended_return?.toFixed(2)}%
+                  {fund.recommended_return !== null && fund.recommended_return !== undefined ? `${fund.recommended_return.toFixed(2)}%` : 'N/A'}
                 </div>
               </div>
             </div>
@@ -146,11 +148,11 @@ const FundDetail = () => {
         <div>
           <h2 className="text-xl font-bold text-white mb-4">Key Metrics</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            <MetricCard label="Latest NAV" value={`₹${fund.latest_nav?.toFixed(2)}`}  color="blue" />
-            <MetricCard label="Volatility" value={`${fund.volatility?.toFixed(2)}%`}  color="orange" />
-            <MetricCard label="Sharpe Ratio" value={fund.sharpe_ratio?.toFixed(3)}  color="purple" />
-            <MetricCard label="Max Drawdown" value={`${fund.max_drawdown?.toFixed(2)}%`}  color="red" />
-            <MetricCard label="1Y Return" value={`${fund.return_1y?.toFixed(2)}%`}  color="green" trend={fund.return_1y} />
+            <MetricCard label="Latest NAV" value={fund.latest_nav !== null && fund.latest_nav !== undefined ? `₹${fund.latest_nav.toFixed(2)}` : 'N/A'}  color="blue" />
+            <MetricCard label="Volatility" value={fund.volatility !== null && fund.volatility !== undefined ? `${fund.volatility.toFixed(2)}%` : 'N/A'}  color="orange" />
+            <MetricCard label="Sharpe Ratio" value={fund.sharpe_ratio !== null && fund.sharpe_ratio !== undefined ? fund.sharpe_ratio.toFixed(3) : 'N/A'}  color="purple" />
+            <MetricCard label="Max Drawdown" value={fund.max_drawdown !== null && fund.max_drawdown !== undefined ? `${fund.max_drawdown.toFixed(2)}%` : 'N/A'}  color="red" />
+            <MetricCard label="1Y Return" value={fund.return_1y !== null && fund.return_1y !== undefined ? `${fund.return_1y.toFixed(2)}%` : 'N/A'}  color="green" trend={fund.return_1y} />
             <MetricCard label="Cluster" value={fund.cluster !== null ? `#${fund.cluster}` : 'N/A'} color="cyan" />
           </div>
         </div>
@@ -214,13 +216,13 @@ const FundDetail = () => {
                   </div>
                   <div className="text-lg font-bold text-white">{predictions.recommended_model}</div>
                   <div className="text-sm text-gray-400 mt-1">
-                    MAPE: {predictions.recommended_mape?.toFixed(3)}%
+                    MAPE: {predictions.recommended_mape !== null && predictions.recommended_mape !== undefined ? `${predictions.recommended_mape.toFixed(3)}%` : 'N/A'}
                   </div>
                 </div>
                 <div className="text-center md:text-right">
                   <div className="text-sm text-gray-400">Expected Return</div>
                   <div className={`text-3xl font-bold ${predictions.recommended_return >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                    {predictions.recommended_return?.toFixed(2)}%
+                    {predictions.recommended_return !== null && predictions.recommended_return !== undefined ? `${predictions.recommended_return.toFixed(2)}%` : 'N/A'}
                   </div>
                 </div>
               </div>
@@ -244,26 +246,28 @@ const FundDetail = () => {
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-400">Predicted Return</span>
                       <span className={`font-semibold ${predictions.prophet.predicted_return_6m >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                        {predictions.prophet.predicted_return_6m?.toFixed(2)}%
+                        {predictions.prophet.predicted_return_6m !== null && predictions.prophet.predicted_return_6m !== undefined ? `${predictions.prophet.predicted_return_6m.toFixed(2)}%` : 'N/A'}
                       </span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-400">Predicted NAV</span>
-                      <span className="text-white font-medium">₹{predictions.prophet.predicted_nav_6m?.toFixed(2)}</span>
+                      <span className="text-white font-medium">
+                        {predictions.prophet.predicted_nav_6m !== null && predictions.prophet.predicted_nav_6m !== undefined ? `₹${predictions.prophet.predicted_nav_6m.toFixed(2)}` : 'N/A'}
+                      </span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-400">Confidence Range</span>
                       <span className="text-gray-300 text-xs">
-                        {predictions.prophet.confidence_lower?.toFixed(2)}% — {predictions.prophet.confidence_upper?.toFixed(2)}%
+                        {predictions.prophet.confidence_lower !== null ? `${predictions.prophet.confidence_lower.toFixed(2)}%` : 'N/A'} — {predictions.prophet.confidence_upper !== null ? `${predictions.prophet.confidence_upper.toFixed(2)}%` : 'N/A'}
                       </span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-400">MAPE</span>
-                      <span className="text-yellow-400 font-medium">{predictions.prophet.mape?.toFixed(3)}%</span>
+                      <span className="text-yellow-400 font-medium">{predictions.prophet.mape !== null ? `${predictions.prophet.mape.toFixed(3)}%` : 'N/A'}</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-400">R² Score</span>
-                      <span className="text-purple-400 font-medium">{predictions.prophet.r2_score?.toFixed(4)}</span>
+                      <span className="text-purple-400 font-medium">{predictions.prophet.r2_score !== null ? predictions.prophet.r2_score.toFixed(4) : 'N/A'}</span>
                     </div>
                   </div>
                 </div>
@@ -285,26 +289,28 @@ const FundDetail = () => {
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-400">Predicted Return</span>
                       <span className={`font-semibold ${predictions.lstm.predicted_return_6m >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                        {predictions.lstm.predicted_return_6m?.toFixed(2)}%
+                        {predictions.lstm.predicted_return_6m !== null && predictions.lstm.predicted_return_6m !== undefined ? `${predictions.lstm.predicted_return_6m.toFixed(2)}%` : 'N/A'}
                       </span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-400">Predicted NAV</span>
-                      <span className="text-white font-medium">₹{predictions.lstm.predicted_nav_6m?.toFixed(2)}</span>
+                      <span className="text-white font-medium">
+                        {predictions.lstm.predicted_nav_6m !== null && predictions.lstm.predicted_nav_6m !== undefined ? `₹${predictions.lstm.predicted_nav_6m.toFixed(2)}` : 'N/A'}
+                      </span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-400">Confidence Range</span>
                       <span className="text-gray-300 text-xs">
-                        {predictions.lstm.confidence_lower?.toFixed(2)}% — {predictions.lstm.confidence_upper?.toFixed(2)}%
+                        {predictions.lstm.confidence_lower !== null ? `${predictions.lstm.confidence_lower.toFixed(2)}%` : 'N/A'} — {predictions.lstm.confidence_upper !== null ? `${predictions.lstm.confidence_upper.toFixed(2)}%` : 'N/A'}
                       </span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-400">MAPE</span>
-                      <span className="text-yellow-400 font-medium">{predictions.lstm.mape?.toFixed(3)}%</span>
+                      <span className="text-yellow-400 font-medium">{predictions.lstm.mape !== null ? `${predictions.lstm.mape.toFixed(3)}%` : 'N/A'}</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-400">R² Score</span>
-                      <span className="text-purple-400 font-medium">{predictions.lstm.r2_score?.toFixed(4)}</span>
+                      <span className="text-purple-400 font-medium">{predictions.lstm.r2_score !== null ? predictions.lstm.r2_score.toFixed(4) : 'N/A'}</span>
                     </div>
                   </div>
                 </div>
@@ -315,13 +321,13 @@ const FundDetail = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
               <MetricCard
                 label="Simple Ensemble"
-                value={`${predictions.ensemble_simple?.toFixed(2)}%`}
+                value={predictions.ensemble_simple !== null ? `${predictions.ensemble_simple.toFixed(2)}%` : 'N/A'}
                 sub="Equal weight average"
                 color="cyan"
               />
               <MetricCard
                 label="Weighted Ensemble"
-                value={`${predictions.ensemble_weighted?.toFixed(2)}%`}
+                value={predictions.ensemble_weighted !== null ? `${predictions.ensemble_weighted.toFixed(2)}%` : 'N/A'}
                 sub="Accuracy-weighted average"
                 color="purple"
               />

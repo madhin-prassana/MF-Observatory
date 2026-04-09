@@ -66,7 +66,7 @@ const Analytics = () => {
           <p className="text-gray-400 mb-2 font-medium">{label}</p>
           {payload.map((p, i) => (
             <p key={i} style={{ color: p.color }} className="font-semibold">
-              {p.name}: {p.value?.toFixed(3)}
+              {p.name}: {p.value !== null && p.value !== undefined ? p.value.toFixed(3) : 'N/A'}
             </p>
           ))}
         </div>
@@ -110,28 +110,28 @@ const Analytics = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               <MetricCard
                 label="Prophet Win Rate"
-                value={`${modelStats.prophet.win_rate.toFixed(1)}%`}
+                value={modelStats.prophet.win_rate !== null ? `${modelStats.prophet.win_rate.toFixed(1)}%` : 'N/A'}
                 sub={`${modelStats.prophet.wins} wins`}
                 icon="📈"
                 color="blue"
               />
               <MetricCard
                 label="LSTM Win Rate"
-                value={`${modelStats.lstm.win_rate.toFixed(1)}%`}
+                value={modelStats.lstm.win_rate !== null ? `${modelStats.lstm.win_rate.toFixed(1)}%` : 'N/A'}
                 sub={`${modelStats.lstm.wins} wins`}
                 icon="🧠"
                 color="purple"
               />
               <MetricCard
                 label="Prophet Avg MAPE"
-                value={`${modelStats.prophet.avg_mape.toFixed(3)}%`}
+                value={modelStats.prophet.avg_mape !== null ? `${modelStats.prophet.avg_mape.toFixed(3)}%` : 'N/A'}
                 sub="Mean Absolute % Error"
                 icon="🎯"
                 color="cyan"
               />
               <MetricCard
                 label="LSTM Avg MAPE"
-                value={`${modelStats.lstm.avg_mape.toFixed(3)}%`}
+                value={modelStats.lstm.avg_mape !== null ? `${modelStats.lstm.avg_mape.toFixed(3)}%` : 'N/A'}
                 sub="Mean Absolute % Error"
                 icon="🎯"
                 color="orange"
@@ -195,21 +195,21 @@ const Analytics = () => {
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-gray-400">Avg Volatility</span>
-                      <span className="text-orange-400 font-medium">{cluster.avg_volatility.toFixed(2)}%</span>
+                      <span className="text-orange-400 font-medium">{cluster.avg_volatility !== null ? `${cluster.avg_volatility.toFixed(2)}%` : 'N/A'}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-400">Avg Return</span>
                       <span className={`font-medium ${cluster.avg_return >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                        {cluster.avg_return.toFixed(2)}%
+                        {cluster.avg_return !== null ? `${cluster.avg_return.toFixed(2)}%` : 'N/A'}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-400">Avg Sharpe</span>
-                      <span className="text-purple-400 font-medium">{cluster.avg_sharpe.toFixed(3)}</span>
+                      <span className="text-purple-400 font-medium">{cluster.avg_sharpe !== null ? cluster.avg_sharpe.toFixed(3) : 'N/A'}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-400">Max Drawdown</span>
-                      <span className="text-red-400 font-medium">{cluster.avg_max_drawdown.toFixed(2)}%</span>
+                      <span className="text-red-400 font-medium">{cluster.avg_max_drawdown !== null ? `${cluster.avg_max_drawdown.toFixed(2)}%` : 'N/A'}</span>
                     </div>
                   </div>
                 </div>
@@ -290,7 +290,9 @@ const Analytics = () => {
                 </div>
 
                 <div className="text-sm text-gray-400 mb-3">
-                  Flag Rate: <span className="text-white font-semibold">{((anomalies.flagged_count / anomalies.total_funds) * 100).toFixed(1)}%</span> of funds have anomalies
+                  Flag Rate: <span className="text-white font-semibold">
+                    {anomalies.total_funds > 0 ? ((anomalies.flagged_count / anomalies.total_funds) * 100).toFixed(1) : '0.0'}%
+                  </span> of funds have anomalies
                 </div>
 
                 {/* Quick category breakdown */}
