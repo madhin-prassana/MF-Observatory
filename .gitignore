@@ -66,3 +66,4 @@ data/*.csv
 !data/fund_metrics.csv
 results/
 **/__pycache__/
+test_api*.py
