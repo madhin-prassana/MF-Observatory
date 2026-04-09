@@ -132,8 +132,8 @@ def process_single_fund(file_path):
         # Convert date to datetime
         df['date'] = pd.to_datetime(df['date'])
 
-        # Sort by date (newest first)
-        df = df.sort_values('date', ascending=False)
+        # Sort by date (past to present for correct pct_change)
+        df = df.sort_values('date', ascending=True)
 
         # Get scheme code and name
         scheme_code = df['scheme_code'].iloc[0]
@@ -182,7 +182,8 @@ def main():
     print("=" * 70)
 
     # Get all fund files
-    data_folder = '../data'
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    data_folder = os.path.join(base_dir, 'data')
     fund_files = glob(os.path.join(data_folder, 'fund_*.csv'))
 
     print(f"\nFound {len(fund_files)} fund files")
@@ -213,7 +214,7 @@ def main():
     metrics_df = metrics_df.sort_values('volatility')
 
     # Save to CSV
-    output_file = '../data/fund_metrics.csv'
+    output_file = os.path.join(data_folder, 'fund_metrics.csv')
     metrics_df.to_csv(output_file, index=False)
 
     print("\n" + "=" * 70)

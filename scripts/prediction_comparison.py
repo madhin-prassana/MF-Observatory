@@ -3,6 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
+ 
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def load_prediction_results():
@@ -13,7 +15,7 @@ def load_prediction_results():
     print("=" * 70)
 
     # Load Prophet results
-    prophet_file = '../results/prediction_results.csv'
+    prophet_file = os.path.join(base_dir, 'results', 'prediction_results.csv')
     if not os.path.exists(prophet_file):
         print("✗ Prophet results not found! Please run prediction.py first.")
         return None, None
@@ -22,7 +24,7 @@ def load_prediction_results():
     print(f"✓ Loaded Prophet results: {len(prophet_df)} funds")
 
     # Load LSTM results
-    lstm_file = '../results/prediction_results_lstm.csv'
+    lstm_file = os.path.join(base_dir, 'results', 'prediction_results_lstm.csv')
     if not os.path.exists(lstm_file):
         print("✗ LSTM results not found! Please run prediction_lstm.py first.")
         return None, None
@@ -377,7 +379,7 @@ def create_comparison_visualizations(merged_df, stats):
                  f'{int(height)}', ha='center', va='bottom', fontsize=11, fontweight='bold')
 
     plt.tight_layout()
-    plt.savefig('../results/prediction_comparison_detailed.png', dpi=300, bbox_inches='tight')
+    plt.savefig(os.path.join(base_dir, 'results', 'prediction_comparison_detailed.png'), dpi=300, bbox_inches='tight')
     print("✓ Saved detailed comparison: results/prediction_comparison_detailed.png")
     plt.close()
 
@@ -433,7 +435,7 @@ def create_comparison_visualizations(merged_df, stats):
     ax4.set_title('Win Rate (Lower MAPE)', fontsize=15, fontweight='bold')
 
     plt.tight_layout()
-    plt.savefig('../results/prediction_comparison_simple.png', dpi=300, bbox_inches='tight')
+    plt.savefig(os.path.join(base_dir, 'results', 'prediction_comparison_simple.png'), dpi=300, bbox_inches='tight')
     print("✓ Saved simple comparison: results/prediction_comparison_simple.png")
     plt.close()
 
@@ -465,12 +467,12 @@ def save_comparison_results(merged_df, stats):
 
     ensemble_df = ensemble_df.sort_values('recommended_return', ascending=False)
 
-    output_file = '../results/prediction_ensemble.csv'
+    output_file = os.path.join(base_dir, 'results', 'prediction_ensemble.csv')
     ensemble_df.to_csv(output_file, index=False)
     print(f"✓ Saved ensemble predictions: {output_file}")
 
     # Save comparison report
-    report_file = '../results/prediction_comparison_report.txt'
+    report_file = os.path.join(base_dir, 'results', 'prediction_comparison_report.txt')
     with open(report_file, 'w') as f:
         f.write("=" * 70 + "\n")
         f.write("PROPHET VS LSTM COMPARISON REPORT\n")

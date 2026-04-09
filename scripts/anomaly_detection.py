@@ -5,6 +5,8 @@ from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
+ 
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def load_data():
@@ -13,7 +15,7 @@ def load_data():
     print("LOADING DATA FOR ANOMALY DETECTION")
     print("=" * 70)
 
-    df = pd.read_csv('../data/fund_metrics.csv')
+    df = pd.read_csv(os.path.join(base_dir, 'data', 'fund_metrics.csv'))
 
     # Remove any rows with missing values
     df = df.dropna(subset=['volatility', 'return_1y', 'max_drawdown', 'return_3m', 'return_6m'])
@@ -350,7 +352,7 @@ def create_visualizations(df):
     ax6.axhline(y=0, color='red', linestyle='--', linewidth=0.8, alpha=0.5)
 
     plt.tight_layout()
-    plt.savefig('../results/anomaly_detection_detailed.png', dpi=300, bbox_inches='tight')
+    plt.savefig(os.path.join(base_dir, 'results', 'anomaly_detection_detailed.png'), dpi=300, bbox_inches='tight')
     print("✓ Saved detailed visualization: results/anomaly_detection_detailed.png")
     plt.close()
 
@@ -379,7 +381,7 @@ def create_visualizations(df):
     ax.axhline(y=0, color='red', linestyle='--', linewidth=1, alpha=0.5)
 
     plt.tight_layout()
-    plt.savefig('../results/anomaly_detection_simple.png', dpi=300, bbox_inches='tight')
+    plt.savefig(os.path.join(base_dir, 'results', 'anomaly_detection_simple.png'), dpi=300, bbox_inches='tight')
     print("✓ Saved presentation chart: results/anomaly_detection_simple.png")
     plt.close()
 
@@ -393,7 +395,7 @@ def save_results(df):
     print("=" * 70)
 
     # Save full results
-    output_file = '../results/anomaly_detection_results.csv'
+    output_file = os.path.join(base_dir, 'results', 'anomaly_detection_results.csv')
     df_output = df[['scheme_code', 'scheme_name', 'anomaly_category',
                     'performance_anomaly_score', 'risk_anomaly_score',
                     'volatility', 'return_1y', 'max_drawdown', 'sharpe_ratio',
@@ -424,12 +426,12 @@ def save_results(df):
                        'Avg_Drawdown', 'Avg_Sharpe',
                        'Avg_Perf_Score', 'Avg_Risk_Score']
 
-    summary_file = '../results/anomaly_summary.csv'
+    summary_file = os.path.join(base_dir, 'results', 'anomaly_summary.csv')
     summary.to_csv(summary_file)
     print(f"✓ Saved anomaly summary: {summary_file}")
 
     # Create text report
-    report_file = '../results/anomaly_report.txt'
+    report_file = os.path.join(base_dir, 'results', 'anomaly_report.txt')
     with open(report_file, 'w') as f:
         f.write("=" * 70 + "\n")
         f.write("MUTUAL FUND ANOMALY DETECTION REPORT\n")
@@ -496,7 +498,7 @@ def main():
     Main execution function
     """
     # Create results folder
-    os.makedirs('../results', exist_ok=True)
+    os.makedirs(os.path.join(base_dir, 'results'), exist_ok=True)
 
     print("\n")
     print("╔" + "═" * 68 + "╗")

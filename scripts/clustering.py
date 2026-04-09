@@ -6,6 +6,8 @@ from sklearn.metrics import silhouette_score
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
+ 
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def load_data():
@@ -14,7 +16,7 @@ def load_data():
     print("LOADING DATA")
     print("=" * 70)
 
-    df = pd.read_csv('../data/fund_metrics.csv')
+    df = pd.read_csv(os.path.join(base_dir, 'data', 'fund_metrics.csv'))
 
     # Remove any rows with missing values in key columns
     df = df.dropna(subset=['volatility', 'return_1y', 'max_drawdown'])
@@ -61,7 +63,7 @@ def find_optimal_clusters(X_scaled, max_k=10):
     ax2.grid(True, alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig('../results/elbow_method.png', dpi=300, bbox_inches='tight')
+    plt.savefig(os.path.join(base_dir, 'results', 'elbow_method.png'), dpi=300, bbox_inches='tight')
     print("✓ Saved elbow method plot: results/elbow_method.png")
     plt.close()
 
@@ -297,7 +299,7 @@ def create_visualizations(df):
     ax6.set_yticklabels(['Volatility', '1Y Return', 'Max Drawdown'], rotation=0)
 
     plt.tight_layout()
-    plt.savefig('../results/clustering_analysis.png', dpi=300, bbox_inches='tight')
+    plt.savefig(os.path.join(base_dir, 'results', 'clustering_analysis.png'), dpi=300, bbox_inches='tight')
     print("✓ Saved main visualization: results/clustering_analysis.png")
     plt.close()
 
@@ -319,7 +321,7 @@ def create_visualizations(df):
     ax.axhline(y=0, color='red', linestyle='--', linewidth=1, alpha=0.5, label='Zero return')
 
     plt.tight_layout()
-    plt.savefig('../results/clustering_simple.png', dpi=300, bbox_inches='tight')
+    plt.savefig(os.path.join(base_dir, 'results', 'clustering_simple.png'), dpi=300, bbox_inches='tight')
     print("✓ Saved presentation chart: results/clustering_simple.png")
     plt.close()
 
@@ -333,7 +335,7 @@ def save_results(df):
     print("=" * 70)
 
     # Save full results with clusters
-    output_file = '../results/clustered_funds.csv'
+    output_file = os.path.join(base_dir, 'results', 'clustered_funds.csv')
     df_output = df[['scheme_code', 'scheme_name', 'cluster', 'risk_category',
                     'volatility', 'return_1y', 'max_drawdown', 'sharpe_ratio',
                     'latest_nav', 'latest_date']].copy()
@@ -356,12 +358,12 @@ def save_results(df):
                        'Avg_Drawdown', 'Min_Drawdown', 'Max_Drawdown',
                        'Avg_Sharpe']
 
-    summary_file = '../results/cluster_summary.csv'
+    summary_file = os.path.join(base_dir, 'results', 'cluster_summary.csv')
     summary.to_csv(summary_file)
     print(f"✓ Saved cluster summary: {summary_file}")
 
     # Create a text report
-    report_file = '../results/clustering_report.txt'
+    report_file = os.path.join(base_dir, 'results', 'clustering_report.txt')
     with open(report_file, 'w') as f:
         f.write("=" * 70 + "\n")
         f.write("MUTUAL FUND CLUSTERING ANALYSIS REPORT\n")
@@ -401,7 +403,7 @@ def main():
     Main execution function
     """
     # Create results folder
-    os.makedirs('../results', exist_ok=True)
+    os.makedirs(os.path.join(base_dir, 'results'), exist_ok=True)
 
     print("\n")
     print("╔" + "═" * 68 + "╗")
